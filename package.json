@@ -1,0 +1,24 @@
+{
+  "name": "delibaba",
+  "version": "1.0.0",
+  "description": "Templates for an e-commerce site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jayzces/delibaba.git"
+  },
+  "keywords": [
+    "delibaba",
+    "e-commerce",
+    "templates"
+  ],
+  "author": "Mary Louise B. Hermosa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jayzces/delibaba/issues"
+  },
+  "homepage": "https://github.com/jayzces/delibaba#readme"
+}
