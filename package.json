@@ -4,7 +4,9 @@
   "description": "Templates for an e-commerce site",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
   },
   "repository": {
     "type": "git",
@@ -20,5 +22,12 @@
   "bugs": {
     "url": "https://github.com/jayzces/delibaba/issues"
   },
-  "homepage": "https://github.com/jayzces/delibaba#readme"
+  "homepage": "https://github.com/jayzces/delibaba#readme",
+  "dependencies": {
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {
+    "@vue/cli-service": "^3.11.0",
+    "vue-template-compiler": "^2.6.10"
+  }
 }
