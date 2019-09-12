@@ -1,10 +1,12 @@
 <template>
-    <div>Hello</div>
+    <div class="services-slide">
+        hey
+    </div>
 </template>
 
 <script>
     export default {
-        name: 'App'
+        name: 'ServicesSlide'
     }
 </script>
 
