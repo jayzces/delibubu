@@ -14,7 +14,6 @@
     --accent3: hsl(16, 100%, 50%); /* #FF4500 */
 
     --max-content-width: 1420px;
-    --mobile-cut-off: 480px;
 }
 
 * {

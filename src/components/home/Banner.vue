@@ -45,6 +45,7 @@
     .content {
         margin: auto;
         position: relative;
+        padding: 0 15px;
         z-index: 1;
         text-align: center;
         color: var(--white);
@@ -56,10 +57,39 @@
         --sub: var(--white);
     }
 
+    @media (min-width: 481px) and (max-width: 650px) {
+        .app-logo {
+            width: 240px;
+        }
+    }
+
+    @media all and (max-width: 480px) {
+        .app-logo {
+            width: 160px;
+        }
+    }
+
     p {
         margin: 28px 0 0;
-        line-height: 57px;
+        line-height: calc(36px * 1.57);
+        font-weight: 600;
         font-size: 36px;
+    }
+
+    @media (min-width: 481px) and (max-width: 650px) {
+        p {
+            margin-top: 10px;
+            line-height: calc(24px * 1.4);
+            font-size: 24px;
+        }
+    }
+
+    @media all and (max-width: 480px) {
+        p {
+            margin-top: 10px;
+            line-height: calc(18px * 1.4);
+            font-size: 18px;
+        }
     }
 
     button {
@@ -73,6 +103,21 @@
         text-transform: uppercase;
         font-weight: 700;
         font-size: 24px;
+    }
+
+    @media (min-width: 481px) and (max-width: 650px) {
+        button {
+            margin-top: 30px;
+        }
+    }
+
+    @media all and (max-width: 481px) {
+        button {
+            margin-top: 15px;
+            padding: 12.5px 40px;
+            font-size: 16px;
+            width: auto;
+        }
     }
 
     .arrow {
@@ -118,5 +163,17 @@
         right: 1px;
         transform: rotate(45deg);
         transform-origin: top left;
+    }
+
+    @media (min-width: 481px) and (max-width: 650px) {
+        .arrow {
+            transform: scale(0.7);
+        }
+    }
+
+    @media all and (max-width: 481px) {
+        .arrow {
+            transform: scale(0.5);
+        }
     }
 </style>
