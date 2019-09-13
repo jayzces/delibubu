@@ -30,6 +30,6 @@
 
 <style scoped>
     .app-logo {
-        height: calc(100em * 0.27);
+        height: calc(100% * 0.27);
     }
 </style>

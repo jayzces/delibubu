@@ -89,6 +89,7 @@
     @media all and (max-width: 480px) {
         .app-logo {
             width: 95px;
+            height: calc(95px * 0.27);
         }
     }
 
