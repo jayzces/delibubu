@@ -96,7 +96,8 @@
     }
 
     .app-logo {
-        font-size: 36px;
+        --main: var(--white);
+        --sub: var(--white);
     }
 
     .links {

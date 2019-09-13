@@ -1,7 +1,7 @@
 <template>
     <section class="banner">
         <div class="content">
-            <h1><AppLogo /></h1>
+            <AppLogo />
             <p>Delivering convenience to you wherever you may be. <br /> Food, Grocery and Errand Services available for your comfort.</p>
             <button>Sign Up Now</button>
         </div>
@@ -50,14 +50,15 @@
         color: var(--white);
     }
 
-    h1 {
-        margin: 0;
-        line-height: 87px;
-        font-size: 72px;
+    .app-logo {
+        width: 324px;
+        height: calc(100% * 0.27);
+        --main: var(--white);
+        --sub: var(--white);
     }
 
     p {
-        margin: 10px 0 0;
+        margin: 28px 0 0;
         line-height: 57px;
         font-size: 36px;
     }

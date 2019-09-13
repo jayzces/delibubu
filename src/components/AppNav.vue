@@ -1,5 +1,5 @@
 <template>
-    <nav class="app-nav">
+    <nav class="app-nav" :class="{ 'nav-blend': blend }">
         <div class="content">
             <AppLogo />
 
@@ -21,21 +21,40 @@
         components: {
             AppLogo: require('@/components/AppLogo').default
         },
+        data() {
+            return {
+                blend: true
+            }
+        },
         computed: {
             ...mapState(['loggedIn']),
+        },
+        mounted() {
+            window.addEventListener('scroll', e => {
+                let body = document.querySelector('html'),
+                    boundary = window.innerHeight / 3
+                if (body.scrollTop > boundary) this.blend = false
+                else this.blend = true
+            })
         }
     }
 </script>
 
 <style scoped>
     .app-nav {
+        background-color: var(--white);
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
         padding: 0 15px;
         height: 60px;
-        z-index: 1;
+        z-index: 2;
+        transition: all 500ms ease-in-out;
+    }
+
+    .nav-blend {
+        background-color: transparent;
     }
 
     .content {
@@ -48,14 +67,32 @@
     }
 
     .app-logo {
-        font-size: 28px;
-        color: var(--white);
+        transition: all 500ms ease-in-out;
+    }
+
+    .nav-blend .app-logo {
+        --main: var(--white);
+        --sub: var(--white);
+    }
+
+    .app-nav:not(.nav-blend) .app-logo {
+        --main: var(--accent3);
+        --sub: var(--accent1);
     }
 
     .login-actions button {
         background-color: transparent;
         text-transform: uppercase;
         font-weight: 700;
+        transition: all 500ms ease-in-out;
+    }
+
+    .login-actions button:first-child {
+        color: var(--accent1);
+    }
+
+    .nav-blend .login-actions button:first-child {
+        color: var(--white);
     }
 
     .login-actions button:not(:first-child) {
@@ -63,9 +100,15 @@
     }
 
     .outlined {
+        background-image: linear-gradient(to right, var(--accent3), var(--accent1));
+        border: 2px solid;
         position: relative;
         padding-top: 8px;
         padding-bottom: 8px;
-        border: 2px solid var(--accent3);
+    }
+
+    .nav-blend .outlined {
+        background-image: none;
+        border-color: var(--accent3);
     }
 </style>
