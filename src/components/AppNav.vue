@@ -53,6 +53,12 @@
         transition: all 500ms ease-in-out;
     }
 
+    @media all and (max-width: 480px) {
+        .app-nav {
+            height: 50px;
+        }
+    }
+
     .nav-blend {
         background-color: transparent;
     }
@@ -78,6 +84,12 @@
     .app-nav:not(.nav-blend) .app-logo {
         --main: var(--accent3);
         --sub: var(--accent1);
+    }
+
+    @media all and (max-width: 480px) {
+        .app-logo {
+            width: 95px;
+        }
     }
 
     .login-actions button {
@@ -110,5 +122,12 @@
     .nav-blend .outlined {
         background-image: none;
         border-color: var(--accent3);
+    }
+
+
+    @media all and (max-width: 480px) {
+        .outlined {
+            display: none;
+        }
     }
 </style>

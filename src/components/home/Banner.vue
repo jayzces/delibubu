@@ -52,7 +52,6 @@
 
     .app-logo {
         width: 324px;
-        height: calc(100% * 0.27);
         --main: var(--white);
         --sub: var(--white);
     }
