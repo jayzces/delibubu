@@ -12,7 +12,7 @@
 
         <AppNav />
         <router-view />
-        <!-- <AppFooter /> -->
+        <AppFooter />
     </div>
 </template>
 
