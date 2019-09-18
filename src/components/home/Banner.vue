@@ -3,10 +3,11 @@
         <div class="content">
             <AppLogo />
             <p>Delivering convenience to you wherever you may be. <br /> Food, Grocery and Errand Services available for your comfort.</p>
-            <button>Sign Up Now</button>
+            <button class="main">Sign Up Now</button>
         </div>
 
-        <div class="arrow"></div>
+        <a href="#services-slides" class="arrow">arrow</a>
+
     </section>
 </template>
 
@@ -28,7 +29,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
+        height: calc(780 / 900 * 100vh);
     }
 
     .banner::after {
@@ -93,15 +94,12 @@
     }
 
     button {
-        background-image: linear-gradient(to right, var(--accent3), var(--accent1));
         display: block;
         margin: 60px auto 0;
         padding-top: 20px;
         padding-bottom: 20px;
         max-width: 340px;
         width: 100%;
-        text-transform: uppercase;
-        font-weight: 700;
         font-size: 24px;
     }
 
@@ -122,10 +120,12 @@
 
     .arrow {
         position: absolute;
+        display: block;
         margin: 0 auto;
         width: 56px;
         height: 36px;
         bottom: 30px;
+        font-size: 0;
         z-index: 1;
         animation: breathe 2s ease-in-out infinite;
         cursor: pointer;

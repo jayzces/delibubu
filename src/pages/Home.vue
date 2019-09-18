@@ -1,7 +1,7 @@
 <template>
     <main class="home">
         <Banner />
-        <ServicesSlide />
+        <ServicesSlides />
     </main>
 </template>
 
@@ -10,7 +10,7 @@
         name: 'Home',
         components: {
             Banner: require('@/components/home/Banner').default,
-            ServicesSlide: require('@/components/home/ServicesSlide').default
+            ServicesSlides: require('@/components/home/ServicesSlides').default
         },
     }
 </script>
