@@ -31,9 +31,8 @@
         },
         mounted() {
             window.addEventListener('scroll', e => {
-                let body = document.querySelector('html'),
-                    boundary = window.innerHeight / 3
-                if (body.scrollTop > boundary) this.blend = false
+                let body = document.querySelector('html')
+                if (body.scrollTop > 0) this.blend = false
                 else this.blend = true
             })
         }

@@ -5,7 +5,9 @@
                 <AppLogo />
 
                 <div class="socials">
-                    sdsf
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-facebook-square"></i>
                 </div>
             </header>
 
@@ -84,6 +86,12 @@
         color: var(--white);
     }
 
+    @media all and (max-width: 480px) {
+        .app-footer {
+            padding-top: 30px;
+        }
+    }
+
     .content {
         margin: 0 auto;
         max-width: var(--max-content-width);
@@ -98,6 +106,37 @@
     .app-logo {
         --main: var(--white);
         --sub: var(--white);
+        width: 165px;
+    }
+
+    @media all and (max-width: 480px) {
+        .app-logo {
+            width: 120px;
+        }
+    }
+
+    .socials {
+        display: flex;
+        align-items: center;
+    }
+
+    .socials svg {
+        width: 30px;
+        height: 100%;
+    }
+
+    .socials svg:not(:first-child) {
+        margin-left: 30px;
+    }
+
+    @media all and (max-width: 480px) {
+        .socials svg {
+            width: 20px;
+        }
+
+        .socials svg:not(:first-child) {
+            margin-left: 20px;
+        }
     }
 
     .links {
@@ -105,7 +144,7 @@
         margin-top: 50px;
     }
 
-    @media (min-width: 641px) and (max-width: 840px) {
+    @media all and (max-width: 840px) {
         .links {
             margin-top: 30px;
         }
@@ -122,7 +161,7 @@
     .link-group {
         margin: 0;
         padding-left: 0;
-        font-size: 24px;
+        font-size: 20px;
         color: var(--white-a70);
     }
 
@@ -200,7 +239,7 @@
         footer {
             display: block;
             margin-top: 30px;
-            padding: 10px 0 20px;
+            padding: 10px 0 10px;
             text-align: center;
             color: var(--white-a40);
         }
