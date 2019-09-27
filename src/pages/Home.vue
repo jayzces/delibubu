@@ -1,20 +1,21 @@
 <template>
     <main class="home">
-        <Banner />
+        <Banner v-if="!loggedIn" />
         <ServicesSlides />
     </main>
 </template>
 
 <script>
+    import { mapState } from 'vuex'
+
     export default {
         name: 'Home',
         components: {
-            Banner: require('@/components/home/Banner').default,
+            Banner: () => import('@/components/home/Banner'),
             ServicesSlides: require('@/components/home/ServicesSlides').default
         },
+        computed: {
+            ...mapState(['loggedIn']),
+        }
     }
 </script>
-
-<style>
-
-</style>

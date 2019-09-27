@@ -238,7 +238,7 @@
 
     li {
         list-style-type: none;
-        padding: 40px;
+        padding: 30px 40px;
         text-align: center;
         font-size: 24px;
         cursor: pointer;

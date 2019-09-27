@@ -4,12 +4,14 @@
             <AppLogo />
 
             <div v-if="!loggedIn" class="login-actions">
-                <button>Log In</button>
+                <button @click="openLoginPopup = true">Log In</button>
                 <button class="outlined">
                     <span>Become a Member</span>
                 </button>
             </div>
         </div>
+
+        <LoginPopup v-if="openLoginPopup" @close="openLoginPopup = false" />
     </nav>
 </template>
 
@@ -19,11 +21,13 @@
     export default {
         name: 'AppNav',
         components: {
-            AppLogo: require('@/components/AppLogo').default
+            AppLogo: require('@/components/AppLogo').default,
+            LoginPopup: require('@/components/auth/LoginPopup').default
         },
         data() {
             return {
-                blend: true
+                blend: true,
+                openLoginPopup: false
             }
         },
         computed: {

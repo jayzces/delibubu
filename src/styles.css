@@ -4,7 +4,11 @@
     --white-a40: hsla(0, 0%, 100%, 0.4);
 
     --black: hsl(222, 24%, 11%); /* #151922 */
+    --black-a70: hsla(222, 24%, 11%, 0.7);
     --black-a50: hsla(222, 24%, 11%, 0.5);
+    --black-a20: hsla(222, 24%, 11%, 0.2);
+
+    --black3: hsl(223, 3%, 55%);
 
     --success: hsl(79, 54%, 51%); /* #9BC53D */
     --error: hsl(0, 86%, 55%); /* #EF2C2C */
@@ -25,6 +29,15 @@
     scroll-behavior: smooth;
 }
 
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--black3);
+    border-radius: 4px;
+}
+
 html {
     font-size: 16px;
 }
@@ -43,12 +56,17 @@ body {
     background: linear-gradient(to right, var(--accent3), var(--accent1));
 }
 
+input,
+textarea,
 button {
-    background-color: var(--accent1);
-    padding: 10px 20px;
     font-family: inherit;
     font-weight: inherit;
     font-size: inherit;
+}
+
+button {
+    background-color: var(--accent1);
+    padding: 10px 20px;
     color: var(--white);
     border: 0;
     border-radius: 40px;
@@ -69,4 +87,20 @@ button.main {
 a {
     text-decoration: none;
     color: var(--accent1);
+}
+
+input {
+    color: inherit;
+}
+
+[type="text"],
+[type="password"] {
+    padding: 0 20px;
+    height: 50px;
+    border: 1px solid var(--black-a20);
+    border-radius: 10px;
+}
+
+p {
+    margin: 0;
 }
