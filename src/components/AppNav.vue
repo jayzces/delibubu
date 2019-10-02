@@ -6,28 +6,32 @@
             <div v-if="!loggedIn" class="login-actions">
                 <button @click="openLoginPopup = true">Log In</button>
                 <button class="outlined">
-                    <span>Become a Member</span>
+                    <span>Become a Partner</span>
                 </button>
             </div>
         </div>
 
         <LoginPopup v-if="openLoginPopup" @close="openLoginPopup = false" />
+        <SignupPopup v-if="openSignupPopup" @close="openSignupPopup = false" />
     </nav>
 </template>
 
 <script>
     import { mapState } from 'vuex'
+    import Eventbus from '@/eventbus'
 
     export default {
         name: 'AppNav',
         components: {
             AppLogo: require('@/components/AppLogo').default,
-            LoginPopup: require('@/components/auth/LoginPopup').default
+            LoginPopup: () => import('@/components/auth/LoginPopup'),
+            SignupPopup: () => import('@/components/auth/SignupPopup')
         },
         data() {
             return {
                 blend: true,
-                openLoginPopup: false
+                openLoginPopup: false,
+                openSignupPopup: false
             }
         },
         computed: {
@@ -38,6 +42,14 @@
                 let body = document.querySelector('html')
                 if (body.scrollTop > 0) this.blend = false
                 else this.blend = true
+            })
+
+            Eventbus.$on('openSignupPopup', () => {
+                this.openSignupPopup = true
+            })
+
+            Eventbus.$on('openLoginPopup', () => {
+                this.openLoginPopup = true
             })
         }
     }
@@ -53,7 +65,11 @@
         padding: 0 15px;
         height: 60px;
         z-index: 2;
-        transition: all 500ms ease-in-out;
+        transition: background 500ms ease-in-out;
+    }
+
+    .open-popup .app-nav {
+        right: 8px;
     }
 
     @media all and (max-width: 480px) {

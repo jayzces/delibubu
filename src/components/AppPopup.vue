@@ -55,8 +55,7 @@
 
 <style>
     body.open-popup {
-        padding-right: 8px;
-        width: 100vw;
+        width: calc(100vw - 8px);
         height: 100vh;
         overflow-y: hidden;
     }

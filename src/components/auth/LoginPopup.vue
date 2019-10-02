@@ -15,14 +15,16 @@
 
         <template slot="footer">
             <p class="error" v-if="showError">Unable to log in. Please check your login details, and try again.</p>
-            <button class="main" @click="event">Login</button>
-            <p>Don't have an account yet? <a href="">Sign Up.</a></p>
+            <button class="main" @click="event">Log In</button>
+            <p>Don't have an account yet?
+                <a href="" @click.prevent="openSignupPopup">Sign Up.</a></p>
         </template>
     </AppPopup>
 </template>
 
 <script>
     import { mapMutations } from 'vuex'
+    import Eventbus from '@/eventbus'
 
     export default {
         name: 'LoginPopup',
@@ -43,6 +45,10 @@
                     this.login()
                     this.$emit('close')
                 }
+            },
+            openSignupPopup() {
+                Eventbus.$emit('openSignupPopup')
+                this.$emit('close')
             }
         }
     }
@@ -66,6 +72,7 @@
     }
 
     label {
+        flex-shrink: 0;
         color: var(--black-a70);
     }
 

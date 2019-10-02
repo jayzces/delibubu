@@ -1,19 +1,18 @@
 :root {
-    --white: hsl(0, 0%, 100%); /* #FFF */
+    --white:     hsl(0, 0%, 100%); /* #FFF */
     --white-a70: hsla(0, 0%, 100%, 0.7);
     --white-a40: hsla(0, 0%, 100%, 0.4);
 
-    --black: hsl(222, 24%, 11%); /* #151922 */
+    --black:     hsl(222, 24%, 11%); /* #151922 */
     --black-a70: hsla(222, 24%, 11%, 0.7);
     --black-a50: hsla(222, 24%, 11%, 0.5);
     --black-a20: hsla(222, 24%, 11%, 0.2);
-
-    --black3: hsl(223, 3%, 55%);
+    --black3:    hsl(223, 3%, 55%); /* #8A8C91 */
 
     --success: hsl(79, 54%, 51%); /* #9BC53D */
-    --error: hsl(0, 86%, 55%); /* #EF2C2C */
+    --error:   hsl(0, 86%, 55%); /* #EF2C2C */
 
-    --accent1: hsl(279, 50%, 34%); /* #642C83 */
+    --accent1:     hsl(279, 50%, 34%); /* #642C83 */
     --accent1-a70: hsla(279, 50%, 34%, 0.7);
     --accent1-a40: hsla(279, 50%, 34%, 0.4);
 
@@ -93,6 +92,7 @@ input {
     color: inherit;
 }
 
+[type="email"],
 [type="text"],
 [type="password"] {
     padding: 0 20px;

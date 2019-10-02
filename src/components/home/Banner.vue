@@ -3,19 +3,25 @@
         <div class="content">
             <AppLogo />
             <p>Delivering convenience to you wherever you may be. <br /> Food, Grocery and Errand Services available for your comfort.</p>
-            <button class="main">Sign Up Now</button>
+            <button class="main" @click="openSignupPopup">Sign Up Now</button>
         </div>
 
         <a href="#services-slides" class="arrow">arrow</a>
-
     </section>
 </template>
 
 <script>
+    import Eventbus from '@/eventbus'
+
     export default {
         name: 'Banner',
         components: {
             AppLogo: require('@/components/AppLogo').default
+        },
+        methods: {
+            openSignupPopup() {
+                Eventbus.$emit('openSignupPopup')
+            }
         }
     }
 </script>
