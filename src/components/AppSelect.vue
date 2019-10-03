@@ -57,13 +57,9 @@
         },
         mounted() {
             this.options.forEach(op => {
-                if (op == this.defaultOption) {
+                if (op == this.defaultOption)
                     this.selected = this.formatter(this.defaultOption)
-                    console.log('????')
-                }
             })
-
-            console.log('????', this.defaultOption)
         }
     }
 </script>
@@ -121,6 +117,7 @@
         z-index: 2;
         border: 1px solid var(--black-a20);
         border-radius: 5px;
+        box-shadow: 0 0 10px var(--black-a20);
     }
 
     .options li {

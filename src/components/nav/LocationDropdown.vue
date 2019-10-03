@@ -45,12 +45,12 @@
             },
             updateLocation() {
                 this.selectedLocation = this.selecting
-                this.selecting = ''
                 this.openDropdown = false
             }
         },
         created() {
             this.selectedLocation = this.locationOptions[1]
+            this.selecting = this.locationOptions[1]
         }
     }
 </script>
