@@ -49,8 +49,8 @@
             }
         },
         created() {
-            this.selectedLocation = this.locationOptions[1]
-            this.selecting = this.locationOptions[1]
+            this.selecting = this.locationOptions[0]
+            this.selectedLocation = this.selecting
         },
         mounted() {
             this.initializeDropdowns(this.$el)
