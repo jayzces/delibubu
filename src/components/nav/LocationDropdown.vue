@@ -27,7 +27,7 @@
             LocationIcon: require('@/components/icons/LocationIcon').default,
             AppSelect: require('@/components/AppSelect').default
         },
-        mixins: [Dropdown],
+        mixins: [ Dropdown ],
         data() {
             return {
                 locationOptions: [
@@ -51,6 +51,9 @@
         created() {
             this.selectedLocation = this.locationOptions[1]
             this.selecting = this.locationOptions[1]
+        },
+        mounted() {
+            this.initializeDropdowns(this.$el)
         }
     }
 </script>

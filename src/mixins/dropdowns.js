@@ -1,31 +1,39 @@
 export const Dropdown = {
     data() {
         return {
-            openDropdown: false
+            openDropdown: false,
+            container: null,
+            trigger: null
         }
     },
     methods: {
+        initializeDropdowns(containerElement) {
+            this.container = containerElement
+            this.trigger = this.container.querySelector('.dropdown__trigger')
+
+            this.trigger.addEventListener('click', () => {
+                let dropdown = this.container.querySelector('.dropdown')
+                dropdown.style.left = `calc(50% -
+                    ${dropdown.clientWidth / 2}px)`
+                this.openDropdown = !this.openDropdown
+            })
+        },
         handleOutsideClicks(e) {
-            if (!e.target.classList.contains('dropdown__trigger'))
+            if (this.trigger != e.target ||
+                !e.target.classList.contains('dropdown__trigger')) {
                 this.openDropdown = false
+            }
         },
         handleInsideClicks(e) {
             e.stopPropagation()
+        },
+        isOpen() {
+            return !!this.openDropdown
         }
-    },
-    mounted() {
-        let container = document.querySelector('.dropdown-container'),
-            trigger = container.querySelector('.dropdown__trigger')
-
-        trigger.addEventListener('click', () => {
-            let dropdown = container.querySelector('.dropdown')
-            dropdown.style.left = `calc(50% - ${dropdown.clientWidth / 2}px)`
-            this.openDropdown = !this.openDropdown
-        })
     },
     watch: {
         openDropdown: function(newValue, oldValue) {
-            let dropdown = document.querySelector('.dropdown')
+            let dropdown = this.container.querySelector('.dropdown')
 
             if (newValue) {
                 window.addEventListener('click', this.handleOutsideClicks)

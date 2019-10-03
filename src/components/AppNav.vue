@@ -12,8 +12,7 @@
 
             <div v-else class="user-dropdowns">
                 <LocationDropdown />
-
-                <div class="user-profile">Valerie Boyle</div>
+                <UserDropdown />
 
                 <div class="notifications">
                     <div class="icon">
@@ -48,7 +47,8 @@
             NotificationIcon: () => import('@/components/icons/NotificationIcon'),
             CartIcon: () => import('@/components/icons/CartIcon'),
 
-            LocationDropdown: () => import('@/components/nav/LocationDropdown')
+            LocationDropdown: () => import('@/components/nav/LocationDropdown'),
+            UserDropdown: () => import('@/components/nav/UserDropdown')
         },
         data() {
             return {

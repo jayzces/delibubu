@@ -11,7 +11,8 @@
     margin-top: 20px;
 }
 
-.field:not(.field--error):focus-within {
+.field:not(.field--error):focus-within,
+.field:hover {
     border-color: var(--accent1);
 }
 
@@ -24,7 +25,8 @@
     color: var(--black-a70);
 }
 
-.field:not(.field--error):focus-within label {
+.field:not(.field--error):focus-within label,
+.field:hover label {
     color: var(--accent1);
 }
 
