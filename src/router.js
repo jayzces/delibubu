@@ -14,6 +14,11 @@ export default new Router({
             path: '/search',
             name: 'Search',
             component: require('@/pages/Search').default
+        }, {
+            path: '*',
+            redirect: {
+                name: 'home'
+            }
         }
     ]
 })
