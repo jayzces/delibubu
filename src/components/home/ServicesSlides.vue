@@ -154,6 +154,7 @@
         justify-content: center;
         align-items: flex-end;
         width: 80%;
+        max-width: var(--max-content-width);
     }
 
     @media all and (max-width: 480px) {

@@ -16,6 +16,6 @@
         },
         computed: {
             ...mapState(['loggedIn']),
-        }
+        },
     }
 </script>

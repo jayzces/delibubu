@@ -3,11 +3,11 @@
         <template slot="title">Login to Delibaba</template>
 
         <form>
-            <div class="field">
+            <div class="field" :class="{ 'field--error': showError }">
                 <label>Username</label>
                 <input type="text" />
             </div>
-            <div class="field">
+            <div class="field" :class="{ 'field--error': showError }">
                 <label>Password</label>
                 <input type="password" />
             </div>
@@ -55,39 +55,6 @@
 </script>
 
 <style scoped>
-    .field {
-        display: flex;
-        align-items: center;
-        padding-left: 20px;
-        border: 1px solid var(--black-a20);
-        border-radius: 10px;
-    }
-
-    .field:not(:first-child) {
-        margin-top: 20px;
-    }
-
-    .field:focus-within {
-        border-color: var(--accent1);
-    }
-
-    label {
-        flex-shrink: 0;
-        color: var(--black-a70);
-    }
-
-    .field:focus-within label {
-        color: var(--accent1);
-    }
-
-    [type="text"],
-    [type="password"] {
-        width: 100%;
-        text-align: right;
-        border: 0;
-        outline: 0;
-    }
-
     .error {
         text-align: center;
         font-size: 12px;

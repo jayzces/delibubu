@@ -9,6 +9,24 @@
                     <span>Become a Partner</span>
                 </button>
             </div>
+
+            <div v-else class="user-dropdowns">
+                <LocationDropdown />
+
+                <div class="user-profile">Valerie Boyle</div>
+
+                <div class="notifications">
+                    <div class="icon">
+                        <NotificationIcon /> <div class="count">99</div>
+                    </div>
+                </div>
+
+                <div class="cart">
+                    <div class="icon">
+                        <CartIcon /> <div class="count">3</div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <LoginPopup v-if="openLoginPopup" @close="openLoginPopup = false" />
@@ -25,7 +43,12 @@
         components: {
             AppLogo: require('@/components/AppLogo').default,
             LoginPopup: () => import('@/components/auth/LoginPopup'),
-            SignupPopup: () => import('@/components/auth/SignupPopup')
+            SignupPopup: () => import('@/components/auth/SignupPopup'),
+
+            NotificationIcon: () => import('@/components/icons/NotificationIcon'),
+            CartIcon: () => import('@/components/icons/CartIcon'),
+
+            LocationDropdown: () => import('@/components/nav/LocationDropdown')
         },
         data() {
             return {
@@ -93,6 +116,7 @@
 
     .app-logo {
         transition: all 500ms ease-in-out;
+        height: unset;
     }
 
     .nav-blend .app-logo {
@@ -149,5 +173,83 @@
         .outlined {
             display: none;
         }
+    }
+
+
+    .user-dropdowns {
+        display: flex;
+        align-items: center;
+        color: var(--white);
+    }
+
+    .app-nav:not(.nav-blend) .user-dropdowns {
+        color: var(--accent1);
+    }
+
+    .user-dropdowns > * {
+        position: relative;
+        margin: 0 20px;
+        /* cursor: pointer; */
+    }
+
+    .user-dropdowns > :last-child {
+        margin-right: 0;
+    }
+
+    .user-dropdowns > :not(:first-child)::before {
+        content: "";
+        background-color: var(--black-a10);
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: -20px;
+        bottom: 0;
+        margin: auto 0;
+        width: 1px;
+        height: 25px;
+    }
+
+    .location,
+    .notifications {
+        display: flex;
+        align-items: center;
+    }
+
+    .location-icon {
+        margin-right: 10px;
+    }
+
+    .icon {
+        position: relative;
+    }
+
+    .count {
+        background-color: var(--white);
+        position: absolute;
+        top: -6px;
+        left: 100%;
+        padding: 0 5px;
+        font-weight: 700;
+        font-size: 12px;
+        color: var(--accent1);
+        border: 1px solid var(--white);
+        border-radius: 12px;
+    }
+
+    .app-nav:not(.nav-blend) .count {
+        background-color: var(--accent1);
+        color: var(--white);
+    }
+
+    .notifications .count {
+        left: calc(100% - 10px);
+    }
+
+    .cart .count {
+        left: calc(100% - 6px);
+    }
+
+    .user-dropdowns svg {
+        width: 20px;
     }
 </style>

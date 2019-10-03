@@ -1,0 +1,30 @@
+.dropdown-container {
+    position: relative;
+}
+
+.dropdown {
+    background-color: var(--white);
+    position: absolute;
+    top: calc(100% + 20px);
+    left: 0;
+    min-width: 150px;
+    box-shadow: 0 0 20px var(--black-a25);
+    color: var(--black);
+}
+
+.dropdown__trigger {
+    cursor: pointer;
+}
+
+.dropdown::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -16px;
+    left: calc(50% - 7px);
+    width: 0;
+    height: 0;
+    border: solid transparent;
+    border-width: 8px 7px;
+    border-bottom-color: var(--white);
+}
