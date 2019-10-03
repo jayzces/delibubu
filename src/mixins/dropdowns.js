@@ -9,7 +9,7 @@ export const Dropdown = {
             if (!e.target.classList.contains('dropdown__trigger'))
                 this.openDropdown = false
         },
-        handleInsideDropdownClicks(e) {
+        handleInsideClicks(e) {
             e.stopPropagation()
         }
     },
@@ -29,12 +29,10 @@ export const Dropdown = {
 
             if (newValue) {
                 window.addEventListener('click', this.handleOutsideClicks)
-                dropdown.addEventListener('click',
-                    this.handleInsideDropdownClicks)
+                dropdown.addEventListener('click', this.handleInsideClicks)
             } else {
                 window.removeEventListener('click', this.handleOutsideClicks)
-                dropdown.removeEventListener('click',
-                    this.handleInsideDropdownClicks)
+                dropdown.removeEventListener('click', this.handleInsideClicks)
             }
         }
     }
