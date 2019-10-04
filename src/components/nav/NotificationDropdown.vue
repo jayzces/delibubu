@@ -1,7 +1,7 @@
 <template>
     <div class="notification-dropdown dropdown-container">
         <div class="icon dropdown__trigger">
-            <NotificationIcon /> <div class="count">99</div>
+            <NotificationIcon /> <div class="count">3</div>
         </div>
 
         <div class="dropdown" :class="{ hidden: !openDropdown }">
@@ -31,7 +31,7 @@
     export default {
         name: 'NotificationDropdown',
         components: {
-            NotificationIcon: () => import('@/components/icons/NotificationIcon'),
+            NotificationIcon: () => import('@/components/icons/NotificationIcon')
         },
         mixins: [ Dropdown ],
         data() {

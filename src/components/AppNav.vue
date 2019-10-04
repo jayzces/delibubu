@@ -13,14 +13,8 @@
             <div v-else class="user-dropdowns">
                 <LocationDropdown />
                 <UserDropdown />
-
                 <NotificationDropdown />
-
-                <div class="cart">
-                    <div class="icon">
-                        <CartIcon /> <div class="count">3</div>
-                    </div>
-                </div>
+                <CartDropdown />
             </div>
         </div>
 
@@ -39,11 +33,11 @@
             AppLogo: require('@/components/AppLogo').default,
             LoginPopup: () => import('@/components/auth/LoginPopup'),
             SignupPopup: () => import('@/components/auth/SignupPopup'),
-            CartIcon: () => import('@/components/icons/CartIcon'),
 
             LocationDropdown: () => import('@/components/nav/LocationDropdown'),
             UserDropdown: () => import('@/components/nav/UserDropdown'),
-            NotificationDropdown: () => import('@/components/nav/NotificationDropdown')
+            NotificationDropdown: () => import('@/components/nav/NotificationDropdown'),
+            CartDropdown: () => import('@/components/nav/CartDropdown')
         },
         data() {
             return {
@@ -180,10 +174,6 @@
         color: var(--accent1);
     }
 
-    .user-dropdowns > :last-child {
-        margin-right: 0;
-    }
-
     /deep/ .dropdown__trigger {
         padding: 0 20px;
     }
@@ -199,40 +189,5 @@
         margin: auto 0;
         width: 1px;
         height: 25px;
-    }
-
-    .notifications {
-        display: flex;
-        align-items: center;
-    }
-
-    .icon {
-        position: relative;
-    }
-
-    .count {
-        background-color: var(--white);
-        position: absolute;
-        top: -6px;
-        left: 100%;
-        padding: 0 5px;
-        font-weight: 700;
-        font-size: 12px;
-        color: var(--accent1);
-        border: 1px solid var(--white);
-        border-radius: 12px;
-    }
-
-    .app-nav:not(.nav-blend) .count {
-        background-color: var(--accent1);
-        color: var(--white);
-    }
-
-    .cart .count {
-        left: calc(100% - 6px);
-    }
-
-    .user-dropdowns svg {
-        width: 20px;
     }
 </style>
