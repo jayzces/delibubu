@@ -54,7 +54,7 @@
                         sender: 'Fannie Ramirez',
                         message: 'Ipsum elit occaecat enim sint proident proident esse.',
                         time: '48 minutes ago',
-                        read: true
+                        read: false
                     }
                 ]
             }
@@ -95,9 +95,15 @@
     }
 
     .dropdown {
-        padding: 10px 0;
+        padding: 5px 0 10px 0;
         width: 100vw;
         max-width: 400px;
+    }
+
+    .notification-list {
+        padding: 5px 0;
+        max-height: 260px;
+        overflow: auto;
     }
 
 
@@ -109,7 +115,11 @@
     }
 
     .notif--unread {
-        background-color: var(--accent1-l92);
+        background-color: var(--accent1-l95);
+    }
+
+    .notif--unread:hover {
+        background-color: var(--accent1-l90);
     }
 
     .notif__avatar {
@@ -133,7 +143,6 @@
     button {
         background-color: transparent;
         display: block;
-        margin-top: 5px;
         padding: 5px 0;
         width: 100%;
         color: var(--accent1);
