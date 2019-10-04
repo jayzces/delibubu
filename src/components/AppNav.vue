@@ -14,11 +14,7 @@
                 <LocationDropdown />
                 <UserDropdown />
 
-                <div class="notifications">
-                    <div class="icon">
-                        <NotificationIcon /> <div class="count">99</div>
-                    </div>
-                </div>
+                <NotificationDropdown />
 
                 <div class="cart">
                     <div class="icon">
@@ -43,12 +39,11 @@
             AppLogo: require('@/components/AppLogo').default,
             LoginPopup: () => import('@/components/auth/LoginPopup'),
             SignupPopup: () => import('@/components/auth/SignupPopup'),
-
-            NotificationIcon: () => import('@/components/icons/NotificationIcon'),
             CartIcon: () => import('@/components/icons/CartIcon'),
 
             LocationDropdown: () => import('@/components/nav/LocationDropdown'),
-            UserDropdown: () => import('@/components/nav/UserDropdown')
+            UserDropdown: () => import('@/components/nav/UserDropdown'),
+            NotificationDropdown: () => import('@/components/nav/NotificationDropdown')
         },
         data() {
             return {
@@ -175,7 +170,6 @@
         }
     }
 
-
     .user-dropdowns {
         display: flex;
         align-items: center;
@@ -186,14 +180,12 @@
         color: var(--accent1);
     }
 
-    .user-dropdowns > * {
-        position: relative;
-        margin: 0 20px;
-        /* cursor: pointer; */
-    }
-
     .user-dropdowns > :last-child {
         margin-right: 0;
+    }
+
+    /deep/ .dropdown__trigger {
+        padding: 0 20px;
     }
 
     .user-dropdowns > :not(:first-child)::before {
@@ -202,21 +194,16 @@
         display: inline-block;
         position: absolute;
         top: 0;
-        left: -20px;
+        left: 0;
         bottom: 0;
         margin: auto 0;
         width: 1px;
         height: 25px;
     }
 
-    .location,
     .notifications {
         display: flex;
         align-items: center;
-    }
-
-    .location-icon {
-        margin-right: 10px;
     }
 
     .icon {
@@ -239,10 +226,6 @@
     .app-nav:not(.nav-blend) .count {
         background-color: var(--accent1);
         color: var(--white);
-    }
-
-    .notifications .count {
-        left: calc(100% - 10px);
     }
 
     .cart .count {

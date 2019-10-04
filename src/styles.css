@@ -22,6 +22,7 @@
     --accent1-a70: hsla(279, 50%, 34%, 0.7);
     --accent1-a40: hsla(279, 50%, 34%, 0.4);
     --accent1-l90: hsl(279, 50%, 90%);
+    --accent1-l92: hsl(279, 50%, 92%);
 
     --accent2: var(--error);
     --accent3: hsl(16, 100%, 50%); /* #FF4500 */

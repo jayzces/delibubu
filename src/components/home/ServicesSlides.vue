@@ -1,7 +1,8 @@
 <template>
     <div class="services-slides" id="services-slides">
         <div class="slides">
-            <div class="slide" v-for="(svc, index) in services"
+            <div class="slide"
+                v-for="(svc, index) in services"
                 :key="`service-slide-${index}`"
                 :style="`background-image: url(${ svc.bg })`"
                 :class="{ visible: svc.visible }">

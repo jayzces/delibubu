@@ -25,15 +25,15 @@
             AppNav: require('@/components/AppNav').default,
             AppFooter: require('@/components/AppFooter').default
         },
-        computed: {
-            ...mapState(['loggedIn']),
-        },
         methods: {
             ...mapMutations(['login', 'logout']),
             userActions() {
                 if (!this.loggedIn) this.login()
                 else this.logout()
             }
+        },
+        computed: {
+            ...mapState(['loggedIn']),
         }
     }
 </script>
