@@ -8,12 +8,17 @@ export default new Router({
     routes: [
         {
             path: '/',
-            name: 'Home',
+            name: 'home',
             component: require('@/pages/Home').default
         }, {
             path: '/search',
             name: 'Search',
             component: require('@/pages/Search').default
+        }, {
+            path: '*',
+            redirect: {
+                name: 'home'
+            }
         }
     ]
 })

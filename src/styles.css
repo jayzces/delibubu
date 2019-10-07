@@ -1,3 +1,6 @@
+@import "css/dropdowns.css";
+@import "css/inputFields.css";
+
 :root {
     --white:     hsl(0, 0%, 100%); /* #FFF */
     --white-a70: hsla(0, 0%, 100%, 0.7);
@@ -6,7 +9,10 @@
     --black:     hsl(222, 24%, 11%); /* #151922 */
     --black-a70: hsla(222, 24%, 11%, 0.7);
     --black-a50: hsla(222, 24%, 11%, 0.5);
+    --black-a40: hsla(222, 24%, 11%, 0.4);
+    --black-a25: hsla(222, 24%, 11%, 0.25);
     --black-a20: hsla(222, 24%, 11%, 0.2);
+    --black-a10: hsla(222, 24%, 11%, 0.1);
     --black3:    hsl(223, 3%, 55%); /* #8A8C91 */
 
     --success: hsl(79, 54%, 51%); /* #9BC53D */
@@ -15,11 +21,16 @@
     --accent1:     hsl(279, 50%, 34%); /* #642C83 */
     --accent1-a70: hsla(279, 50%, 34%, 0.7);
     --accent1-a40: hsla(279, 50%, 34%, 0.4);
+    --accent1-l90: hsl(279, 50%, 90%);
+    --accent1-l95: hsl(279, 50%, 95%);
 
     --accent2: var(--error);
     --accent3: hsl(16, 100%, 50%); /* #FF4500 */
 
     --max-content-width: 1420px;
+    --dropdown-arrow-position: 50% - 7px;
+
+    /* --nav-height defined in AppNav.vue */
 }
 
 * {
@@ -107,4 +118,9 @@ input {
 
 p {
     margin: 0;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
 }

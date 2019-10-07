@@ -18,7 +18,8 @@
                     <li class="group-header">{{ group.title }}</li>
                     <li v-for="(link, lIndex) in group.links"
                         :key="`group-${gIndex}-link-${lIndex}`">
-                        <a href="">{{ link.name }}</a>
+                        <router-link :to="{ name: link.route }">
+                            {{ link.name }}</router-link>
                     </li>
                 </ul>
             </div>
@@ -48,31 +49,61 @@
                     {
                         title: 'About Us',
                         links: [
-                            { name: 'Careers' },
-                            { name: 'Mobile Apps' },
-                            { name: 'Contact Us' }
+                            {
+                                name: 'Careers',
+                                route: ''
+                            }, {
+                                name: 'Mobile Apps',
+                                route: ''
+                            }, {
+                                name: 'Contact Us',
+                                route: ''
+                            }
                         ]
                     }, {
                         title: 'Our Services',
                         links: [
-                            { name: 'Food Pickup and Delivery' },
-                            { name: 'Grocery Services' },
-                            { name: 'Errand Services' },
-                            { name: 'Cash Delivery / Deposit' },
-                            { name: 'Bills Payment' }
+                            {
+                                name: 'Food Pickup and Delivery',
+                                route: 'search'
+                            }, {
+                                name: 'Grocery Services',
+                                route: ''
+                            }, {
+                                name: 'Errand Services',
+                                route: ''
+                            }, {
+                                name: 'Cash Delivery / Deposit',
+                                route: ''
+                            }, {
+                                name: 'Bills Payment',
+                                route: ''
+                            }
                         ]
                     }, {
                         title: 'Our Partners',
                         links: [
-                            { name: 'Our Merchant Partners' },
-                            { name: 'Become a Partner' }
+                            {
+                                name: 'Our Merchant Partners',
+                                route: ''
+                            }, {
+                                name: 'Become a Partner',
+                                route: ''
+                            }
                         ]
                     }
                 ],
                 moreLinks: [
-                    { name: 'Terms and Conditions' },
-                    { name: 'Privacy Policy' },
-                    { name: 'Shipping Policy' }
+                    {
+                        name: 'Terms and Conditions',
+                        route: ''
+                    }, {
+                        name: 'Privacy Policy',
+                        route: ''
+                    }, {
+                        name: 'Shipping Policy',
+                        route: ''
+                    }
                 ]
             }
         }

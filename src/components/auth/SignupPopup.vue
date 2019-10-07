@@ -77,49 +77,6 @@
 </script>
 
 <style scoped>
-    .field {
-        display: flex;
-        align-items: center;
-        padding-left: 20px;
-        border: 1px solid var(--black-a20);
-        border-radius: 10px;
-    }
-
-    .field-group:not(:first-child),
-    .field:not(:first-child) {
-        margin-top: 20px;
-    }
-
-    .field:not(.field--error):focus-within {
-        border-color: var(--accent1);
-    }
-
-    .field--error {
-        border-color: var(--error);
-    }
-
-    label {
-        flex-shrink: 0;
-        color: var(--black-a70);
-    }
-
-    .field:not(.field--error):focus-within label {
-        color: var(--accent1);
-    }
-
-    .field--error label {
-        color: var(--error);
-    }
-
-    [type="email"],
-    [type="text"],
-    [type="password"] {
-        width: 100%;
-        text-align: right;
-        border: 0;
-        outline: 0;
-    }
-
     .error {
         margin-top: 10px;
         font-size: 12px;

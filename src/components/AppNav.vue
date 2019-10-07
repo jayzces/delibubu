@@ -1,13 +1,32 @@
 <template>
     <nav class="app-nav" :class="{ 'nav-blend': blend }">
         <div class="content">
-            <AppLogo />
+            <div class="left">
+                <button class="user-dropdowns-toggle"
+                    v-if="loggedIn"
+                    @click="showUserDropdowns = !showUserDropdowns">
+                    <MenuIcon />
+                </button>
 
-            <div v-if="!loggedIn" class="login-actions">
+                <router-link class="logo-link" :to="{ name: 'home' }">
+                    <AppLogo v-if="!showUserDropdowns" />
+                </router-link>
+            </div>
+
+
+            <div class="login-actions" v-if="!loggedIn" >
                 <button @click="openLoginPopup = true">Log In</button>
                 <button class="outlined">
                     <span>Become a Partner</span>
                 </button>
+            </div>
+
+            <div class="user-dropdowns" v-else
+                :class="{ 'show-dropdown': showUserDropdowns }">
+                <LocationDropdown />
+                <UserDropdown />
+                <NotificationDropdown />
+                <CartDropdown />
             </div>
         </div>
 
@@ -24,14 +43,22 @@
         name: 'AppNav',
         components: {
             AppLogo: require('@/components/AppLogo').default,
+            MenuIcon: () => import('@/components/icons/MenuIcon'),
+
             LoginPopup: () => import('@/components/auth/LoginPopup'),
-            SignupPopup: () => import('@/components/auth/SignupPopup')
+            SignupPopup: () => import('@/components/auth/SignupPopup'),
+
+            LocationDropdown: () => import('@/components/nav/LocationDropdown'),
+            UserDropdown: () => import('@/components/nav/UserDropdown'),
+            NotificationDropdown: () => import('@/components/nav/NotificationDropdown'),
+            CartDropdown: () => import('@/components/nav/CartDropdown')
         },
         data() {
             return {
                 blend: true,
                 openLoginPopup: false,
-                openSignupPopup: false
+                openSignupPopup: false,
+                showUserDropdowns: false
             }
         },
         computed: {
@@ -55,6 +82,18 @@
     }
 </script>
 
+<style>
+    :root {
+        --nav-height: 60px;
+    }
+
+    @media all and (max-width: 480px) {
+        :root {
+            --nav-height: 50px;
+        }
+    }
+</style>
+
 <style scoped>
     .app-nav {
         background-color: var(--white);
@@ -63,19 +102,13 @@
         left: 0;
         right: 0;
         padding: 0 15px;
-        height: 60px;
+        height: var(--nav-height);
         z-index: 2;
         transition: background 500ms ease-in-out;
     }
 
     .open-popup .app-nav {
         right: 8px;
-    }
-
-    @media all and (max-width: 480px) {
-        .app-nav {
-            height: 50px;
-        }
     }
 
     .nav-blend {
@@ -91,8 +124,19 @@
         height: 100%;
     }
 
+    .left {
+        display: flex;
+        align-items: center;
+    }
+
+    .logo-link {
+        display: flex;
+    }
+
     .app-logo {
         transition: all 500ms ease-in-out;
+        height: unset;
+        flex-shrink: 0;
     }
 
     .nav-blend .app-logo {
@@ -149,5 +193,67 @@
         .outlined {
             display: none;
         }
+    }
+
+    .user-dropdowns {
+        display: flex;
+        align-items: center;
+        color: var(--white);
+    }
+
+    @media all and (max-width: 650px) {
+        .user-dropdowns:not(.show-dropdown) {
+            display: none;
+        }
+    }
+
+    .app-nav:not(.nav-blend) .user-dropdowns {
+        color: var(--accent1);
+    }
+
+    /deep/ .dropdown__trigger {
+        padding: 0 20px;
+    }
+
+    @media all and (max-width: 650px) {
+        /deep/ .dropdown__trigger {
+            padding: 0 15px;
+        }
+    }
+
+    .user-dropdowns > :not(:first-child)::before {
+        content: "";
+        background-color: var(--black-a10);
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        margin: auto 0;
+        width: 1px;
+        height: 25px;
+    }
+
+
+    .user-dropdowns-toggle {
+        background-color: transparent;
+        display: flex;
+        margin-right: 15px;
+        padding: 5px;
+        color: var(--white);
+    }
+
+    .app-nav:not(.nav-blend) .user-dropdowns-toggle {
+        color: var(--accent1);
+    }
+
+    @media all and (min-width: 651px) {
+        .user-dropdowns-toggle {
+            display: none;
+        }
+    }
+
+    .menu-icon {
+        width: 20px;
     }
 </style>
