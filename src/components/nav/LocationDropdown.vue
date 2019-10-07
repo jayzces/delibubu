@@ -70,9 +70,21 @@
         align-items: center;
     }
 
+    @media all and (max-width: 650px) {
+        .location {
+            font-size: 0;
+        }
+    }
+
     .location-icon {
-        margin-right: 10px;
         width: 20px;
+        pointer-events: none;
+    }
+
+    @media all and (min-width: 651px) {
+        .location-icon {
+            margin-right: 10px;
+        }
     }
 
     .app-select {

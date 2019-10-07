@@ -6,7 +6,7 @@
             </button>
 
             <template v-if="hasHeaderSlot">
-                <header v-if="hasTextHeader" class="popup__text-header">
+                <header class="popup__text-header" v-if="hasTextHeader">
                     <slot name="title">Popup Title</slot>
                 </header>
                 <header v-else>

@@ -68,6 +68,7 @@
 <style scoped>
     .icon {
         position: relative;
+        display: flex;
     }
 
     .notification-icon {
@@ -92,6 +93,12 @@
     .app-nav:not(.nav-blend) .count {
         background-color: var(--accent1);
         color: var(--white);
+    }
+
+    @media all and (max-width: 650px) {
+        .count {
+            left: calc(100% - 25px);
+        }
     }
 
     .dropdown {

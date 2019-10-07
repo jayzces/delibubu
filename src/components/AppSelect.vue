@@ -4,8 +4,8 @@
             :class="{ placeholder: selected == placeholder }"
             @click="openOptions = !openOptions">{{ selected }}</div>
 
-        <ul v-if="openOptions" class="options">
-            <li v-if="options.length == 0" class="placeholder">
+        <ul class="options" v-if="openOptions">
+            <li class="placeholder" v-if="options.length == 0">
                 {{ placeholder }}
             </li>
             <li v-for="(op, index) in options"

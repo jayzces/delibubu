@@ -28,6 +28,9 @@
     --accent3: hsl(16, 100%, 50%); /* #FF4500 */
 
     --max-content-width: 1420px;
+    --dropdown-arrow-position: 50% - 7px;
+
+    /* --nav-height defined in AppNav.vue */
 }
 
 * {

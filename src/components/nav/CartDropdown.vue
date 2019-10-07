@@ -41,6 +41,7 @@
 <style scoped>
     .icon {
         position: relative;
+        display: flex;
     }
 
     .dropdown__trigger {

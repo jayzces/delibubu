@@ -1,6 +1,8 @@
 <template>
     <div class="user-dropdown dropdown-container">
-        <div class="dropdown__trigger user-profile">Valerie Boyle</div>
+        <div class="icon dropdown__trigger user-profile">Valerie Boyle
+            <UserIcon />
+        </div>
 
         <div class="dropdown" :class="{ hidden: !openDropdown }">
             <a href="">My Profile</a>
@@ -17,6 +19,9 @@
 
     export default {
         name: 'UserDropdown',
+        components: {
+            UserIcon: require('@/components/icons/UserIcon').default
+        },
         mixins: [ Dropdown ],
         methods: {
             ...mapMutations(['logout']),
@@ -32,6 +37,27 @@
 </script>
 
 <style scoped>
+    .icon {
+        display: flex;
+    }
+
+    .user-icon {
+        width: 20px;
+        pointer-events: none;
+    }
+
+    @media all and (min-width: 651px) {
+        .user-icon {
+            display: none;
+        }
+    }
+
+    @media all and (max-width: 650px) {
+        .user-profile {
+            font-size: 0;
+        }
+    }
+
     .dropdown {
         padding: 10px 0;
     }

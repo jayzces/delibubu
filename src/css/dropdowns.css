@@ -2,6 +2,11 @@
     position: relative;
 }
 
+.dropdown__trigger {
+    user-select: none;
+    cursor: pointer;
+}
+
 .dropdown {
     background-color: var(--white);
     position: absolute;
@@ -12,9 +17,21 @@
     color: var(--black);
 }
 
-.dropdown__trigger {
-    user-select: none;
-    cursor: pointer;
+.dropdown--full-width .dropdown,
+.dropdown--right-overflow .dropdown,
+.dropdown--left-overflow .dropdown {
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+}
+
+.dropdown--right-overflow .dropdown {
+    left: initial;
+}
+
+.dropdown--left-overflow .dropdown {
+    right: initial;
 }
 
 .dropdown::before {
@@ -22,7 +39,7 @@
     display: block;
     position: absolute;
     top: -16px;
-    left: calc(50% - 7px);
+    left: calc(var(--dropdown-arrow-position));
     width: 0;
     height: 0;
     border: solid transparent;

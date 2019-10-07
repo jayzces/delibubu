@@ -221,6 +221,10 @@
         .slides__nav {
             overflow-y: auto;
         }
+
+       .slides__nav::-webkit-scrollbar {
+            height: 0;
+        }
     }
 
     ul {
