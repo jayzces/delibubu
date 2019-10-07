@@ -8,7 +8,9 @@
                     <MenuIcon />
                 </button>
 
-                <AppLogo v-if="!showUserDropdowns" />
+                <router-link class="logo-link" :to="{ name: 'home' }">
+                    <AppLogo v-if="!showUserDropdowns" />
+                </router-link>
             </div>
 
 
@@ -125,6 +127,10 @@
     .left {
         display: flex;
         align-items: center;
+    }
+
+    .logo-link {
+        display: flex;
     }
 
     .app-logo {

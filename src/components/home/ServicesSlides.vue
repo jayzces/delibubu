@@ -9,7 +9,9 @@
                 <div class="slide__content">
                     <h3>{{ svc.title }}</h3>
                     <p v-html="svc.subtitle">{{ svc.subtitle }}</p>
-                    <button class="main">{{ svc.button }}</button>
+                    <button class="main"
+                        @click="$router.push({ name: svc.route })">
+                        {{ svc.button }}</button>
                 </div>
             </div>
         </div>
@@ -36,35 +38,35 @@
                         subtitle: 'Your favorites meals and treats <br /> delivered right to your door.',
                         bg: 'https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80',
                         button: 'Order Now',
-                        redirect_url: '',
+                        route: 'search',
                         visible: true
                     }, {
                         title: 'Grocery Services',
                         subtitle: 'Get your groceries delivered fast and easy. <br /> No more waiting in long lines.',
                         bg: 'https://images.unsplash.com/photo-1516594798947-e65505dbb29d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80',
                         button: 'Order Now',
-                        redirect_url: '',
+                        route: '',
                         visible: false
                     }, {
                         title: 'Errands Services',
                         subtitle: 'Whatever you need, <br /> we’ll get it done.',
                         bg: 'https://images.pexels.com/photos/1325755/pexels-photo-1325755.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260',
                         button: 'Inquire Now',
-                        redirect_url: '',
+                        route: '',
                         visible: false
                     }, {
                         title: 'Cash Delivery / Deposit',
                         subtitle: 'Fast, easy and secure way to <br /> send money to your loved ones.',
                         bg: 'https://images.unsplash.com/photo-1520695287272-b7f8af46d367?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80',
                         button: 'Padala Now',
-                        redirect_url: '',
+                        route: '',
                         visible: false
                     }, {
                         title: 'Bills Payment',
                         subtitle: 'Easy and convenient way to settle <br /> and pay your bills.',
                         bg: 'https://images.pexels.com/photos/53621/calculator-calculation-insurance-finance-53621.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260',
                         button: 'Pay Now',
-                        redirect_url: '',
+                        route: '',
                         visible: false
                     },
                 ]
@@ -88,6 +90,9 @@
                 bar.style.cssText = `max-width: ${item.clientWidth}px;
                     left: ${item.offsetLeft}px`
                 container.scrollLeft = item.offsetLeft
+            },
+            goTo(routeName) {
+                this.$router.push({ name: routeName })
             }
         },
         mounted() {
@@ -115,12 +120,12 @@
         align-items: center;
         height: 100%;
         text-align: right;
-        opacity: 0;
         transition: opacity 1s ease-in-out;
     }
 
-    .slide.visible {
-        opacity: 1;
+    .slide:not(.visible) {
+        opacity: 0;
+        pointer-events: none;
     }
 
     .slide,
