@@ -39,7 +39,7 @@
     display: block;
     position: absolute;
     top: -16px;
-    left: calc(var(--dropdown-arrow-position));
+    left: var(--dropdown-arrow-position);
     width: 0;
     height: 0;
     border: solid transparent;

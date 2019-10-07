@@ -14,15 +14,18 @@ export const Dropdown = {
             this.dropdown = this.container.querySelector('.dropdown')
 
             this.trigger.addEventListener('click', () => {
-                let bounds = this.dropdown.getBoundingClientRect(),
-                    navHeight = document.querySelector('.app-nav').clientHeight
-
                 this.openDropdown = !this.openDropdown
 
                 if (this.container.matches('.dropdown--right-overflow') ||
-                    this.container.matches('.dropdown--left-overflow')) {
+                this.container.matches('.dropdown--left-overflow')) {
                     return
                 }
+
+                // set initial computation
+                this.dropdown.style.left = `calc(50% -
+                    ${this.dropdown.clientWidth / 2}px)`
+
+                let bounds = this.dropdown.getBoundingClientRect()
 
                 if (bounds.width == window.innerWidth) {
                     this.container.classList.add('dropdown--full-width')
@@ -35,6 +38,7 @@ export const Dropdown = {
 
                 } else if (bounds.right > window.innerWidth) {
                     this.container.classList.add('dropdown--right-overflow')
+                    this.dropdown.style.left = ''
 
                     let triggerBounds = this.trigger.getBoundingClientRect(),
                         triggerCenter = (triggerBounds.width / 2 +
@@ -47,16 +51,13 @@ export const Dropdown = {
 
                 } else if (bounds.left < 0) {
                     this.container.classList.add('dropdown--left-overflow')
+                    this.dropdown.style.left = ''
 
                     /**
                      * Arrow position not computed
                      * There is currently no use-case in the project
                      * I'm lazy
                      */
-
-                } else {
-                    this.dropdown.style.left = `calc(50% -
-                        ${this.dropdown.clientWidth / 2}px)`
                 }
             })
         },
