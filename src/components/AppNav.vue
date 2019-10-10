@@ -1,5 +1,5 @@
 <template>
-    <nav class="app-nav" :class="{ 'nav-blend': blend, 'nav-fixed': fixed }">
+    <nav class="app-nav" :class="{ 'nav-blend': blend }">
         <div class="content">
             <div class="left">
                 <button class="user-dropdowns-toggle"
@@ -56,7 +56,6 @@
         data() {
             return {
                 blend: false,
-                fixed: false,
                 openLoginPopup: false,
                 openSignupPopup: false,
                 showUserDropdowns: false
@@ -76,11 +75,9 @@
             Eventbus.$on('blendNav', value => {
                 if (value) {
                     this.blend = true
-                    this.fixed = true
                     window.addEventListener('scroll', this.scrollFunction)
                 } else {
                     this.blend = false
-                    this.fixed = false
                     window.removeEventListener('scroll', this.scrollFunction)
                 }
             })
@@ -111,8 +108,10 @@
 <style scoped>
     .app-nav {
         background-color: var(--white);
-        position: sticky;
+        position: fixed;
         top: 0;
+        left: 0;
+        right: 0;
         padding: 0 15px;
         height: var(--nav-height);
         z-index: 2;
@@ -121,13 +120,6 @@
 
     .open-popup .app-nav {
         right: 8px;
-    }
-
-    .nav-fixed {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
     }
 
     .nav-blend {

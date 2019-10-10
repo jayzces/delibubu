@@ -26,3 +26,9 @@
         }
     }
 </script>
+
+<style scoped>
+    .home {
+        margin-top: calc(-1 * var(--nav-height));
+    }
+</style>

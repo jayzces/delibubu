@@ -40,4 +40,8 @@
 
 <style>
     @import 'styles.css';
+
+    .app {
+        padding-top: var(--nav-height);
+    }
 </style>
