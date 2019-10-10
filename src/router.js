@@ -11,9 +11,9 @@ export default new Router({
             name: 'home',
             component: require('@/pages/Home').default
         }, {
-            path: '/search',
-            name: 'Search',
-            component: require('@/pages/Search').default
+            path: '/food-pickup-and-delivery',
+            name: 'food-pickup',
+            component: require('@/pages/FoodPickup').default
         }, {
             path: '*',
             redirect: {

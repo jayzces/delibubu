@@ -1,6 +1,6 @@
 <template>
     <section class="app-footer">
-        <div class="content">
+        <div class="max-content">
             <header>
                 <AppLogo />
 
@@ -65,7 +65,7 @@
                         links: [
                             {
                                 name: 'Food Pickup and Delivery',
-                                route: 'search'
+                                route: 'food-pickup'
                             }, {
                                 name: 'Grocery Services',
                                 route: ''
@@ -123,9 +123,8 @@
         }
     }
 
-    .content {
+    .max-content {
         margin: 0 auto;
-        max-width: var(--max-content-width);
     }
 
     header {

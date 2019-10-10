@@ -6,7 +6,7 @@
                 :key="`service-slide-${index}`"
                 :style="`background-image: url(${ svc.bg })`"
                 :class="{ visible: svc.visible }">
-                <div class="slide__content">
+                <div class="slide__content max-content">
                     <h3>{{ svc.title }}</h3>
                     <p v-html="svc.subtitle">{{ svc.subtitle }}</p>
                     <button class="main"
@@ -38,7 +38,7 @@
                         subtitle: 'Your favorites meals and treats <br /> delivered right to your door.',
                         bg: 'https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80',
                         button: 'Order Now',
-                        route: 'search',
+                        route: 'food-pickup',
                         visible: true
                     }, {
                         title: 'Grocery Services',
@@ -160,7 +160,6 @@
         justify-content: center;
         align-items: flex-end;
         width: 80%;
-        max-width: var(--max-content-width);
     }
 
     @media all and (max-width: 480px) {

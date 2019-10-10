@@ -1,6 +1,6 @@
 <template>
     <nav class="app-nav" :class="{ 'nav-blend': blend }">
-        <div class="content">
+        <div class="nav__content max-content">
             <div class="left">
                 <button class="user-dropdowns-toggle"
                     v-if="loggedIn"
@@ -12,7 +12,6 @@
                     <AppLogo v-if="!showUserDropdowns" />
                 </router-link>
             </div>
-
 
             <div class="login-actions" v-if="!loggedIn" >
                 <button @click="openLoginPopup = true">Log In</button>
@@ -126,12 +125,11 @@
         background-color: transparent;
     }
 
-    .content {
+    .nav__content {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin: 0 auto;
-        max-width: var(--max-content-width);
         height: 100%;
     }
 

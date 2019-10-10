@@ -31,6 +31,8 @@
     --dropdown-arrow-position: calc(50% - 7px);
 
     /* --nav-height defined in AppNav.vue */
+
+    /* Media breakpoints: 480px 650px */
 }
 
 * {
@@ -116,6 +118,10 @@ input {
     border-radius: 10px;
 }
 
+::placeholder {
+    color: var(--black-a40);
+}
+
 p {
     margin: 0;
 }
@@ -123,4 +129,12 @@ p {
 .hidden {
     opacity: 0;
     pointer-events: none;
+}
+
+img {
+    width: 100%;
+}
+
+.max-content {
+    max-width: var(--max-content-width);
 }
