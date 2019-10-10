@@ -20,5 +20,8 @@ export default new Router({
                 name: 'home'
             }
         }
-    ]
+    ],
+    scrollBehavior() {
+        return { x: 0, y: 0 }
+    }
 })
