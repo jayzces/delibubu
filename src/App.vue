@@ -1,5 +1,5 @@
 <template>
-    <div class="app" :class="{ loggedIn: loggedIn }">
+    <div class="app">
         <!-- <router-link :to="{ name: 'Home' }">Home</router-link> &nbsp;
         <router-link :to="{ name: 'Search' }">Search</router-link>
 

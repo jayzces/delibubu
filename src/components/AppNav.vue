@@ -1,5 +1,5 @@
 <template>
-    <nav class="app-nav" :class="{ 'nav-blend': blend }">
+    <nav class="app-nav" :class="{ 'nav-blend': blend, 'nav-fixed': fixed }">
         <div class="content">
             <div class="left">
                 <button class="user-dropdowns-toggle"
@@ -55,20 +55,34 @@
         },
         data() {
             return {
-                blend: true,
+                blend: false,
+                fixed: false,
                 openLoginPopup: false,
                 openSignupPopup: false,
                 showUserDropdowns: false
+            }
+        },
+        methods: {
+            scrollFunction() {
+                let body = document.querySelector('html')
+                if (body.scrollTop > 0) this.blend = false
+                else this.blend = true
             }
         },
         computed: {
             ...mapState(['loggedIn']),
         },
         mounted() {
-            window.addEventListener('scroll', e => {
-                let body = document.querySelector('html')
-                if (body.scrollTop > 0) this.blend = false
-                else this.blend = true
+            Eventbus.$on('blendNav', value => {
+                if (value) {
+                    this.blend = true
+                    this.fixed = true
+                    window.addEventListener('scroll', this.scrollFunction)
+                } else {
+                    this.blend = false
+                    this.fixed = false
+                    window.removeEventListener('scroll', this.scrollFunction)
+                }
             })
 
             Eventbus.$on('openSignupPopup', () => {
@@ -97,10 +111,8 @@
 <style scoped>
     .app-nav {
         background-color: var(--white);
-        position: fixed;
+        position: sticky;
         top: 0;
-        left: 0;
-        right: 0;
         padding: 0 15px;
         height: var(--nav-height);
         z-index: 2;
@@ -109,6 +121,13 @@
 
     .open-popup .app-nav {
         right: 8px;
+    }
+
+    .nav-fixed {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
     }
 
     .nav-blend {

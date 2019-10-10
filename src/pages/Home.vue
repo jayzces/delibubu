@@ -7,6 +7,7 @@
 
 <script>
     import { mapState } from 'vuex'
+    import Eventbus from '@/eventbus'
 
     export default {
         name: 'Home',
@@ -17,5 +18,11 @@
         computed: {
             ...mapState(['loggedIn']),
         },
+        mounted() {
+            Eventbus.$emit('blendNav', true)
+        },
+        destroyed() {
+            Eventbus.$emit('blendNav', false)
+        }
     }
 </script>
