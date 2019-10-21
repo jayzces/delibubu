@@ -85,7 +85,7 @@
             },
             moveSelectedBar() {
                 let item = document.querySelector('li.selected'),
-                    container = item.parentElement.parentElement,
+                    container = item.closest('.slides__nav'),
                     bar = document.querySelector('.bar')
                 bar.style.cssText = `max-width: ${item.clientWidth}px;
                     left: ${item.offsetLeft}px`
@@ -222,7 +222,7 @@
 
     @media all and (max-width: 480px) {
         .slides__nav {
-            overflow-x: auto;
+            overflow-y: auto;
         }
 
        .slides__nav::-webkit-scrollbar {

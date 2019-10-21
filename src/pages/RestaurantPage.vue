@@ -35,8 +35,14 @@
                 <ul>
                     <li v-for="(group, index) in menu"
                         :key="group.name"
-                        @click="scrollTo(`menu-item-${index}`)"
+                        @click="scrollTo(index)"
+                        :class="{ active: index == activeMenu }"
                     >{{ group.name }}</li>
+                    <li>Specialteas</li>
+                    <li>Fruitea</li>
+                    <li>Yakult</li>
+                    <li>Ice Cold (No Tea)</li>
+                    <li>Latte</li>
                 </ul>
             </aside>
 
@@ -189,7 +195,8 @@
                             }
                         ]
                     }
-                ]
+                ],
+                activeMenu: 0
             }
         },
         methods: {
@@ -198,10 +205,11 @@
                 else this.favorites --
                 this.is_favorite = !this.is_favorite
             },
-            scrollTo(id) {
+            scrollTo(index) {
                 let navHeight = getComputedStyle(document.body)
                     .getPropertyValue('--nav-height'),
-                    offset = parseInt(navHeight)
+                    offset = parseInt(navHeight),
+                    id = `#menu-item-${index}`
 
                 if (window.innerWidth <= 640) {
                     let menuHeight = document.querySelector('.menu')
@@ -209,9 +217,21 @@
                     offset += menuHeight
                 }
 
-                this.$scrollTo(`#${id}`, {
+                this.$scrollTo(id, {
                     offset: -1 * offset
                 })
+
+                let promise = new Promise((resolve, reject) => {
+                    this.activeMenu = index
+                    resolve()
+                })
+
+                promise.then(this.handleMenuScroll)
+            },
+            handleMenuScroll() {
+                let item = document.querySelector('li.active'),
+                    container = item.closest('.menu')
+                container.scrollLeft = item.offsetLeft
             }
         },
         filters: {
@@ -253,12 +273,14 @@
     }
 
     header {
-        padding: 20px 15px;
+        padding: 15px;
     }
 
     @media all and (min-width: 641px) {
         header {
-            border-bottom: 1px solid var(--black-a20);
+            background-color: var(--white);
+            border: solid var(--black-a20);
+            border-width: 1px 0;
         }
     }
 
@@ -422,6 +444,8 @@
     }
 
     .menu {
+        position: sticky;
+        top: var(--nav-height);
         margin-right: 40px;
         flex-shrink: 0;
         width: 180px;
@@ -432,11 +456,15 @@
         padding-top: 20px;
     }
 
+    @media all and (min-width: 641px) {
+        .menu {
+            align-self: flex-start;
+        }
+    }
+
     @media all and (max-width: 640px) {
         .menu {
             background-color: var(--white);
-            position: sticky;
-            top: var(--nav-height);
             padding-top: 0;
             width: 100vw;
             border: solid var(--black-a20);
@@ -472,6 +500,11 @@
     .menu li {
         padding: 10px 20px;
         cursor: pointer;
+    }
+
+    .menu .active {
+        font-weight: 600;
+        color: var(--accent3);
     }
 
     @media all and (max-width: 640px) {
