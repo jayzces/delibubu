@@ -222,7 +222,7 @@
 
     @media all and (max-width: 480px) {
         .slides__nav {
-            overflow-y: auto;
+            overflow-x: auto;
         }
 
        .slides__nav::-webkit-scrollbar {

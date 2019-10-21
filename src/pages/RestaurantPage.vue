@@ -33,13 +33,18 @@
                 <h2>Menu</h2>
 
                 <ul>
-                    <li v-for="group in menu"
-                        :key="group.name">{{ group.name }}</li>
+                    <li v-for="(group, index) in menu"
+                        :key="group.name"
+                        @click="scrollTo(`menu-item-${index}`)"
+                    >{{ group.name }}</li>
                 </ul>
             </aside>
 
             <section class="menu-list">
-                <section class="menu-group" v-for="group in menu" :key="group.name">
+                <section class="menu-group"
+                    v-for="(group, index) in menu"
+                    :key="group.name"
+                    :id="`menu-item-${index}`">
                     <h2>{{ group.name }}</h2>
 
                     <div class="items-list">
@@ -76,114 +81,114 @@
         data() {
             return {
                 is_favorite: false,
-                favorites: 123456,
+                favorites: 123456789,
                 menu: [
-                    // {
-                    //     name: 'Plain Milk Tea',
-                    //     items: [
-                    //         {
-                    //             name: 'Plain Milk Tea 1',
-                    //             image_url: 'https://images.unsplash.com/photo-1536998003793-b13c28fae74b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-                    //             desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-                    //             price: 124.25
-                    //         }, {
-                    //             name: 'Plain Milk Tea 2',
-                    //             image_url: 'https://images.unsplash.com/photo-1531969179221-3946e6b5a5e7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-                    //             desc: '',
-                    //             price: 180.50
-                    //         }, {
-                    //             name: 'Plain Milk Tea 3',
-                    //             image_url: 'https://images.unsplash.com/photo-1521012012373-6a85bade18da?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-                    //             desc: 'Illo corporis assumenda rerum deserunt, quisquam totam sapiente suscipit laudantium commodi magni debitis autem possimus labore unde cumque doloremque eius et accusamus.',
-                    //             price: 160.00
-                    //         }, {
-                    //             name: 'Plain Milk Tea 4',
-                    //             image_url: 'https://images.unsplash.com/photo-1523906630133-f6934a1ab2b9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-                    //             desc: '',
-                    //             price: 105.25
-                    //         }, {
-                    //             name: 'Plain Milk Tea 5',
-                    //             image_url: 'https://images.unsplash.com/photo-1470162656305-6f429ba817bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-                    //             desc: 'Molestias sed a libero id voluptatibus numquam aliquam at sit, doloremque officiis animi magnam hic, beatae itaque repellendus molestiae omnis doloribus laboriosam.',
-                    //             price: 194.25
-                    //         }, {
-                    //             name: 'Plain Milk Tea 6',
-                    //             image_url: 'https://images.unsplash.com/photo-1491720731493-223f97d92c21?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-                    //             desc: '',
-                    //             price: 124.50
-                    //         }
-                    //     ]
-                    // }, {
-                    //     name: 'Flavored Milk Tea',
-                    //     items: [
-                    //         {
-                    //             name: 'Flavored Milk Tea 1',
-                    //             image_url: 'https://images.unsplash.com/photo-1536998003793-b13c28fae74b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-                    //             desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-                    //             price: 124.25
-                    //         }, {
-                    //             name: 'Flavored Milk Tea 2',
-                    //             image_url: 'https://images.unsplash.com/photo-1531969179221-3946e6b5a5e7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-                    //             desc: '',
-                    //             price: 180.50
-                    //         }, {
-                    //             name: 'Flavored Milk Tea 3',
-                    //             image_url: 'https://images.unsplash.com/photo-1521012012373-6a85bade18da?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-                    //             desc: 'Illo corporis assumenda rerum deserunt, quisquam totam sapiente suscipit laudantium commodi magni debitis autem possimus labore unde cumque doloremque eius et accusamus.',
-                    //             price: 160.00
-                    //         }, {
-                    //             name: 'Flavored Milk Tea 4',
-                    //             image_url: 'https://images.unsplash.com/photo-1523906630133-f6934a1ab2b9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-                    //             desc: '',
-                    //             price: 105.25
-                    //         }, {
-                    //             name: 'Flavored Milk Tea 5',
-                    //             image_url: 'https://images.unsplash.com/photo-1470162656305-6f429ba817bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-                    //             desc: 'Molestias sed a libero id voluptatibus numquam aliquam at sit, doloremque officiis animi magnam hic, beatae itaque repellendus molestiae omnis doloribus laboriosam.',
-                    //             price: 194.25
-                    //         }, {
-                    //             name: 'Flavored Milk Tea 6',
-                    //             image_url: 'https://images.unsplash.com/photo-1491720731493-223f97d92c21?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-                    //             desc: '',
-                    //             price: 124.50
-                    //         }
-                    //     ]
-                    // }, {
-                    //     name: 'Wintermelon Series',
-                    //     items: [
-                    //         {
-                    //             name: 'Wintermelon Series 1',
-                    //             image_url: 'https://images.unsplash.com/photo-1536998003793-b13c28fae74b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-                    //             desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-                    //             price: 124.25
-                    //         }, {
-                    //             name: 'Wintermelon Series 2',
-                    //             image_url: 'https://images.unsplash.com/photo-1531969179221-3946e6b5a5e7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-                    //             desc: '',
-                    //             price: 180.50
-                    //         }, {
-                    //             name: 'Wintermelon Series 3',
-                    //             image_url: 'https://images.unsplash.com/photo-1521012012373-6a85bade18da?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-                    //             desc: 'Illo corporis assumenda rerum deserunt, quisquam totam sapiente suscipit laudantium commodi magni debitis autem possimus labore unde cumque doloremque eius et accusamus.',
-                    //             price: 160.00
-                    //         }, {
-                    //             name: 'Wintermelon Series 4',
-                    //             image_url: 'https://images.unsplash.com/photo-1523906630133-f6934a1ab2b9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-                    //             desc: '',
-                    //             price: 105.25
-                    //         }, {
-                    //             name: 'Wintermelon Series 5',
-                    //             image_url: 'https://images.unsplash.com/photo-1470162656305-6f429ba817bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-                    //             desc: 'Molestias sed a libero id voluptatibus numquam aliquam at sit, doloremque officiis animi magnam hic, beatae itaque repellendus molestiae omnis doloribus laboriosam.',
-                    //             price: 194.25
-                    //         }, {
-                    //             name: 'Wintermelon Series 6',
-                    //             image_url: 'https://images.unsplash.com/photo-1491720731493-223f97d92c21?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-                    //             desc: '',
-                    //             price: 124.50
-                    //         }
-                    //     ]
-                    // }
+                    {
+                        name: 'Plain Milk Tea',
+                        items: [
+                            {
+                                name: 'Plain Milk Tea 1',
+                                image_url: 'https://images.unsplash.com/photo-1536998003793-b13c28fae74b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+                                desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+                                price: 124.25
+                            }, {
+                                name: 'Plain Milk Tea 2',
+                                image_url: 'https://images.unsplash.com/photo-1531969179221-3946e6b5a5e7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+                                desc: '',
+                                price: 180.50
+                            }, {
+                                name: 'Plain Milk Tea 3',
+                                image_url: 'https://images.unsplash.com/photo-1521012012373-6a85bade18da?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+                                desc: 'Illo corporis assumenda rerum deserunt, quisquam totam sapiente suscipit laudantium commodi magni debitis autem possimus labore unde cumque doloremque eius et accusamus.',
+                                price: 160.00
+                            }, {
+                                name: 'Plain Milk Tea 4',
+                                image_url: 'https://images.unsplash.com/photo-1523906630133-f6934a1ab2b9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+                                desc: '',
+                                price: 105.25
+                            }, {
+                                name: 'Plain Milk Tea 5',
+                                image_url: 'https://images.unsplash.com/photo-1470162656305-6f429ba817bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+                                desc: 'Molestias sed a libero id voluptatibus numquam aliquam at sit, doloremque officiis animi magnam hic, beatae itaque repellendus molestiae omnis doloribus laboriosam.',
+                                price: 194.25
+                            }, {
+                                name: 'Plain Milk Tea 6',
+                                image_url: 'https://images.unsplash.com/photo-1491720731493-223f97d92c21?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+                                desc: '',
+                                price: 124.50
+                            }
+                        ]
+                    }, {
+                        name: 'Flavored Milk Tea',
+                        items: [
+                            {
+                                name: 'Flavored Milk Tea 1',
+                                image_url: 'https://images.unsplash.com/photo-1536998003793-b13c28fae74b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+                                desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+                                price: 124.25
+                            }, {
+                                name: 'Flavored Milk Tea 2',
+                                image_url: 'https://images.unsplash.com/photo-1531969179221-3946e6b5a5e7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+                                desc: '',
+                                price: 180.50
+                            }, {
+                                name: 'Flavored Milk Tea 3',
+                                image_url: 'https://images.unsplash.com/photo-1521012012373-6a85bade18da?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+                                desc: 'Illo corporis assumenda rerum deserunt, quisquam totam sapiente suscipit laudantium commodi magni debitis autem possimus labore unde cumque doloremque eius et accusamus.',
+                                price: 160.00
+                            }, {
+                                name: 'Flavored Milk Tea 4',
+                                image_url: 'https://images.unsplash.com/photo-1523906630133-f6934a1ab2b9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+                                desc: '',
+                                price: 105.25
+                            }, {
+                                name: 'Flavored Milk Tea 5',
+                                image_url: 'https://images.unsplash.com/photo-1470162656305-6f429ba817bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+                                desc: 'Molestias sed a libero id voluptatibus numquam aliquam at sit, doloremque officiis animi magnam hic, beatae itaque repellendus molestiae omnis doloribus laboriosam.',
+                                price: 194.25
+                            }, {
+                                name: 'Flavored Milk Tea 6',
+                                image_url: 'https://images.unsplash.com/photo-1491720731493-223f97d92c21?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+                                desc: '',
+                                price: 124.50
+                            }
+                        ]
+                    }, {
+                        name: 'Wintermelon Series',
+                        items: [
+                            {
+                                name: 'Wintermelon Series 1',
+                                image_url: 'https://images.unsplash.com/photo-1536998003793-b13c28fae74b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+                                desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+                                price: 124.25
+                            }, {
+                                name: 'Wintermelon Series 2',
+                                image_url: 'https://images.unsplash.com/photo-1531969179221-3946e6b5a5e7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+                                desc: '',
+                                price: 180.50
+                            }, {
+                                name: 'Wintermelon Series 3',
+                                image_url: 'https://images.unsplash.com/photo-1521012012373-6a85bade18da?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+                                desc: 'Illo corporis assumenda rerum deserunt, quisquam totam sapiente suscipit laudantium commodi magni debitis autem possimus labore unde cumque doloremque eius et accusamus.',
+                                price: 160.00
+                            }, {
+                                name: 'Wintermelon Series 4',
+                                image_url: 'https://images.unsplash.com/photo-1523906630133-f6934a1ab2b9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+                                desc: '',
+                                price: 105.25
+                            }, {
+                                name: 'Wintermelon Series 5',
+                                image_url: 'https://images.unsplash.com/photo-1470162656305-6f429ba817bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+                                desc: 'Molestias sed a libero id voluptatibus numquam aliquam at sit, doloremque officiis animi magnam hic, beatae itaque repellendus molestiae omnis doloribus laboriosam.',
+                                price: 194.25
+                            }, {
+                                name: 'Wintermelon Series 6',
+                                image_url: 'https://images.unsplash.com/photo-1491720731493-223f97d92c21?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+                                desc: '',
+                                price: 124.50
+                            }
+                        ]
+                    }
                 ]
             }
         },
@@ -192,6 +197,21 @@
                 if (!this.is_favorite) this.favorites++
                 else this.favorites --
                 this.is_favorite = !this.is_favorite
+            },
+            scrollTo(id) {
+                let navHeight = getComputedStyle(document.body)
+                    .getPropertyValue('--nav-height'),
+                    offset = parseInt(navHeight)
+
+                if (window.innerWidth <= 640) {
+                    let menuHeight = document.querySelector('.menu')
+                        .clientHeight
+                    offset += menuHeight
+                }
+
+                this.$scrollTo(`#${id}`, {
+                    offset: -1 * offset
+                })
             }
         },
         filters: {
@@ -234,7 +254,12 @@
 
     header {
         padding: 20px 15px;
-        border-bottom: 1px solid var(--black-a20);
+    }
+
+    @media all and (min-width: 641px) {
+        header {
+            border-bottom: 1px solid var(--black-a20);
+        }
     }
 
     @media all and (max-width: 480px) {
@@ -377,35 +402,129 @@
         color: var(--black-a70);
     }
 
-    .restaurant__content {
-        display: flex;
-        padding: 20px 0 50px;
+    @media all and (max-width: 640px) {
+        .menu h2 {
+            display: none;
+        }
     }
 
-    aside ul {
-        margin: 15px 0 0;
+    @media all and (max-width: 480px) {
+        h2 {
+            font-size: inherit;
+        }
+    }
+
+    @media all and (min-width: 641px) {
+        .restaurant__content {
+            display: flex;
+            padding: 0 15px 50px;
+        }
+    }
+
+    .menu {
+        margin-right: 40px;
+        flex-shrink: 0;
+        width: 180px;
+    }
+
+    .menu,
+    .menu-list {
+        padding-top: 20px;
+    }
+
+    @media all and (max-width: 640px) {
+        .menu {
+            background-color: var(--white);
+            position: sticky;
+            top: var(--nav-height);
+            padding-top: 0;
+            width: 100vw;
+            border: solid var(--black-a20);
+            border-width: 1px 0;
+            overflow-x: auto;
+        }
+
+        .menu::-webkit-scrollbar {
+            height: 0;
+        }
+    }
+
+    .menu ul {
+        margin: 0;
         padding-left: 0;
         list-style-type: none;
     }
 
-    aside li {
+    @media all and (min-width: 641px) {
+        .menu ul {
+            margin-top: 15px;
+        }
+    }
+
+    @media all and (max-width: 640px) {
+        .menu ul {
+            display: flex;
+            margin: 0 auto;
+            width: max-content;
+        }
+    }
+
+    .menu li {
         padding: 10px 20px;
         cursor: pointer;
     }
 
-    .menu-list {
-        margin-left: 40px;
+    @media all and (max-width: 640px) {
+        .menu li {
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+    }
+
+    @media all and (max-width: 640px) {
+        .menu-list {
+            padding: 0 15px 50px;
+        }
     }
 
     .menu-group:not(:first-child) {
         margin-top: 40px;
     }
 
+    @media all and (max-width: 640px) {
+        .menu-group {
+            padding-top: 15px;
+        }
+
+        .menu-group:not(:first-child) {
+            margin-top: 25px;
+        }
+    }
+
     .items-list {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        grid-gap: 30px;
         margin-top: 15px;
+    }
+
+    @media all and (min-width: 941px) {
+        .items-list {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-gap: 30px;
+        }
+    }
+
+    @media (min-width: 841px) and (max-width: 940px) {
+        .items-list {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-gap: 20px;
+        }
+    }
+
+    @media all and (max-width: 840px) {
+        .items-list {
+            grid-template-columns: minmax(0, 1fr);
+            grid-gap: 20px;
+        }
     }
 
     .item {
