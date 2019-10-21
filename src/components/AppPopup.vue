@@ -55,10 +55,17 @@
 
 <style>
     body.open-popup {
-        width: calc(100vw - 8px);
+        width: 100vw;
         height: 100vh;
         overflow-y: hidden;
     }
+
+    @media all and (min-width: 961px) {
+        body.open-popup {
+            width: calc(100vw - 8px);
+        }
+    }
+
 </style>
 
 <style scoped>
