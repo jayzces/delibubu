@@ -90,9 +90,6 @@
                 bar.style.cssText = `max-width: ${item.clientWidth}px;
                     left: ${item.offsetLeft}px`
                 container.scrollLeft = item.offsetLeft
-            },
-            goTo(routeName) {
-                this.$router.push({ name: routeName })
             }
         },
         mounted() {
