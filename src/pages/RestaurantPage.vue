@@ -29,22 +29,7 @@
         </header>
 
         <section class="max-content restaurant__content">
-            <aside class="menu">
-                <h2>Menu</h2>
-
-                <ul>
-                    <li v-for="(group, index) in menu"
-                        :key="group.name"
-                        @click="scrollTo(index)"
-                        :class="{ active: index == activeMenu }"
-                    >{{ group.name }}</li>
-                    <li>Specialteas</li>
-                    <li>Fruitea</li>
-                    <li>Yakult</li>
-                    <li>Ice Cold (No Tea)</li>
-                    <li>Latte</li>
-                </ul>
-            </aside>
+            <MenuSidebar :menu="menu" />
 
             <section class="menu-list">
                 <section class="menu-group"
@@ -82,7 +67,9 @@
         components: {
             FavoriteIcon: () => import('@/components/icons/FavoriteIcon'),
             FavoriteIconFilled: () => import('@/components/icons/FavoriteIcon-Filled'),
-            OpenTimesDropdown: require('@/components/restaurant/OpenTimesDropdown').default
+            OpenTimesDropdown: () => import('@/components/restaurant/OpenTimesDropdown'),
+
+            MenuSidebar: require('@/components/restaurant/MenuSidebar').default
         },
         data() {
             return {
@@ -195,8 +182,7 @@
                             }
                         ]
                     }
-                ],
-                activeMenu: 0
+                ]
             }
         },
         methods: {
@@ -204,34 +190,6 @@
                 if (!this.is_favorite) this.favorites++
                 else this.favorites --
                 this.is_favorite = !this.is_favorite
-            },
-            scrollTo(index) {
-                let navHeight = getComputedStyle(document.body)
-                    .getPropertyValue('--nav-height'),
-                    offset = parseInt(navHeight),
-                    id = `#menu-item-${index}`
-
-                if (window.innerWidth <= 640) {
-                    let menuHeight = document.querySelector('.menu')
-                        .clientHeight
-                    offset += menuHeight
-                }
-
-                this.$scrollTo(id, {
-                    offset: -1 * offset
-                })
-
-                let promise = new Promise((resolve, reject) => {
-                    this.activeMenu = index
-                    resolve()
-                })
-
-                promise.then(this.handleMenuScroll)
-            },
-            handleMenuScroll() {
-                let item = document.querySelector('li.active'),
-                    container = item.closest('.menu')
-                container.scrollLeft = item.offsetLeft
             }
         },
         filters: {
@@ -418,16 +376,11 @@
         width: 20px;
     }
 
-    h2 {
+    h2,
+    /deep/ h2 {
         font-weight: 600;
         font-size: 20px;
         color: var(--black-a70);
-    }
-
-    @media all and (max-width: 640px) {
-        .menu h2 {
-            display: none;
-        }
     }
 
     @media all and (max-width: 480px) {
@@ -443,74 +396,10 @@
         }
     }
 
-    .menu {
-        position: sticky;
-        top: var(--nav-height);
-        margin-right: 40px;
-        flex-shrink: 0;
-        width: 180px;
-    }
-
-    .menu,
-    .menu-list {
-        padding-top: 20px;
-    }
-
     @media all and (min-width: 641px) {
-        .menu {
-            align-self: flex-start;
-        }
-    }
-
-    @media all and (max-width: 640px) {
-        .menu {
-            background-color: var(--white);
-            padding-top: 0;
-            width: 100vw;
-            border: solid var(--black-a20);
-            border-width: 1px 0;
-            overflow-x: auto;
-        }
-
-        .menu::-webkit-scrollbar {
-            height: 0;
-        }
-    }
-
-    .menu ul {
-        margin: 0;
-        padding-left: 0;
-        list-style-type: none;
-    }
-
-    @media all and (min-width: 641px) {
-        .menu ul {
-            margin-top: 15px;
-        }
-    }
-
-    @media all and (max-width: 640px) {
-        .menu ul {
-            display: flex;
-            margin: 0 auto;
-            width: max-content;
-        }
-    }
-
-    .menu li {
-        padding: 10px 20px;
-        cursor: pointer;
-    }
-
-    .menu .active {
-        font-weight: 600;
-        color: var(--accent3);
-    }
-
-    @media all and (max-width: 640px) {
-        .menu li {
-            padding-top: 15px;
-            padding-bottom: 15px;
+        .menu-sidebar,
+        .menu-list {
+            padding-top: 20px;
         }
     }
 
