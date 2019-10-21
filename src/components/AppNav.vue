@@ -129,7 +129,6 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin: 0 auto;
         height: 100%;
     }
 
@@ -264,5 +263,11 @@
 
     .menu-icon {
         width: 20px;
+    }
+
+    .dropdown--full-width /deep/ .dropdown,
+    .dropdown--right-overflow /deep/ .dropdown,
+    .dropdown--left-overflow /deep/ .dropdown {
+        top: var(--nav-height);
     }
 </style>

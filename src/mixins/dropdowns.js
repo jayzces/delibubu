@@ -28,6 +28,8 @@ export const Dropdown = {
                 let bounds = this.dropdown.getBoundingClientRect()
 
                 if (bounds.width == window.innerWidth) {
+                    // for nav dropdowns
+
                     this.container.classList.add('dropdown--full-width')
 
                     let triggerBounds = this.trigger.getBoundingClientRect(),
@@ -37,6 +39,8 @@ export const Dropdown = {
                         arrowPosition)
 
                 } else if (bounds.right > window.innerWidth) {
+                    // for nav dropdowns
+
                     this.container.classList.add('dropdown--right-overflow')
                     this.dropdown.style.left = ''
 
@@ -44,20 +48,21 @@ export const Dropdown = {
                         triggerCenter = (triggerBounds.width / 2 +
                             triggerBounds.left),
                         updatedBounds = this.dropdown.getBoundingClientRect(),
-                        arrowPosition = `${triggerCenter - updatedBounds.left
-                            - 7}px`
+                        arrowPosition = `${triggerCenter -
+                            updatedBounds.left - 7}px`
                     this.dropdown.style.setProperty('--dropdown-arrow-position',
                         arrowPosition)
 
                 } else if (bounds.left < 0) {
+                    // for Open Times dropdown
+
                     this.container.classList.add('dropdown--left-overflow')
                     this.dropdown.style.left = ''
 
-                    /**
-                     * Arrow position not computed
-                     * There is currently no use-case in the project
-                     * I'm lazy
-                     */
+                    let triggerBounds = this.trigger.getBoundingClientRect(),
+                        arrowPosition = triggerBounds.width / 2
+                    this.dropdown.style.setProperty('--dropdown-arrow-position',
+                        `${arrowPosition}px`)
                 }
             })
         },

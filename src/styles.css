@@ -122,7 +122,10 @@ input {
     color: var(--black-a40);
 }
 
-p {
+p,
+h1,
+h2,
+h3 {
     margin: 0;
 }
 
@@ -136,5 +139,12 @@ img {
 }
 
 .max-content {
+    margin: 0 auto;
     max-width: var(--max-content-width);
+}
+
+.ellipsis {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }

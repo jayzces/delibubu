@@ -123,10 +123,6 @@
         }
     }
 
-    .max-content {
-        margin: 0 auto;
-    }
-
     header {
         display: flex;
         justify-content: space-between;

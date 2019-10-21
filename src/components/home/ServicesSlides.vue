@@ -174,7 +174,6 @@
 
     h3,
     p {
-        margin: 0;
         font-size: 36px;
     }
 
