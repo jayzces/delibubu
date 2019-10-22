@@ -41,7 +41,8 @@
                     <div class="items-list">
                         <div class="item"
                             v-for="item in group.items"
-                            :key="item.name">
+                            :key="item.name"
+                            @click="openPopup = true">
                             <img :src="item.image_url"
                                 :alt="`${item.name}'s Image`" />
 
@@ -58,6 +59,7 @@
             </section>
         </section>
 
+        <FoodPopup v-if="openPopup" @close="openPopup = false" />
     </main>
 </template>
 
@@ -65,11 +67,12 @@
     export default {
         name: 'RestaurantPage',
         components: {
+            MenuSidebar: require('@/components/restaurant/MenuSidebar').default,
+
             FavoriteIcon: () => import('@/components/icons/FavoriteIcon'),
             FavoriteIconFilled: () => import('@/components/icons/FavoriteIcon-Filled'),
             OpenTimesDropdown: () => import('@/components/restaurant/OpenTimesDropdown'),
-
-            MenuSidebar: require('@/components/restaurant/MenuSidebar').default
+            FoodPopup: () => import('@/components/restaurant/FoodPopup')
         },
         data() {
             return {
@@ -182,7 +185,8 @@
                             }
                         ]
                     }
-                ]
+                ],
+                openPopup: true
             }
         },
         methods: {
@@ -377,7 +381,7 @@
     }
 
     h2,
-    /deep/ h2 {
+    .menu-sidebar /deep/ h2 {
         font-weight: 600;
         font-size: 20px;
         color: var(--black-a70);

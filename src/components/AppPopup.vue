@@ -93,6 +93,7 @@
 
     .popup__close {
         background-color: transparent;
+        display: flex;
         position: absolute;
         top: 20px;
         right: 20px;
