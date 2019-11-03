@@ -6,8 +6,8 @@
             </section>
         </template>
 
-        <section>
-            <h2>hello</h2>
+        <template>
+            <h2>Plain Milk Tea 1</h2>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate ipsum nulla vitae dolor, consequatur eum, modi animi laboriosam ut temporibus totam. Corrupti tempore architecto repellendus! Molestiae accusamus doloremque deleniti voluptatum!</p>
 
             <section class="category"
@@ -15,7 +15,8 @@
                 :key="cat.name">
                 <header>
                     <h3>{{ cat.name }}
-                        <span v-if="cat.required" class="tag">Required</span>
+                        <span v-if="cat.required"
+                            class="tag tag--accent1">Required</span>
                         <span v-else class="tag">Optional</span>
                     </h3>
 
@@ -25,10 +26,10 @@
                     </small>
                 </header>
 
-                <div class="options"
-                    v-for="(opt, oIndex) in cat.options"
-                    :key="opt.name">
-                        <div class="option">
+                <div class="options">
+                    <div class="option"
+                        v-for="(opt, oIndex) in cat.options"
+                        :key="opt.name">
                         <input type="radio"
                             v-if="cat.maxPick == 1"
                             :name="`cat-${cIndex}-opt`"
@@ -43,14 +44,54 @@
                             :value="opt.name"
                             :disabled="isDisabled(cat, opt.name)" />
 
-                        <label :for="`cat-${cIndex}-opt-${oIndex}`">
-                            {{ opt.name }}</label>
+                        <label :for="`cat-${cIndex}-opt-${oIndex}`"
+                            @click="updateSubtotal(cat, opt)">{{ opt.name }}
+                            <span v-if="opt.additionPrice > 0"
+                                class="additional-price"> +
+                                {{ opt.additionPrice | currency }}</span>
+                        </label>
                     </div>
                 </div>
             </section>
 
-            <section></section>
-        </section>
+            <section class="special-notes">
+                <header>
+                    <h3>Special Notes</h3>
+                </header>
+
+                <textarea placeholder="Do you have any special preferences?"></textarea>
+            </section>
+
+            <section class="preparation-time">
+                <header>
+                    <h3>Preparation Time</h3>
+
+                    <div>50 minute/s</div>
+                </header>
+            </section>
+
+            <section class="quantity-and-subtotal">
+                <div class="quantity">
+                    <h3>Quantity</h3>
+                    <div class="counter">
+                        <button @click="minusQuantity">&minus;</button>
+                        <input type="text" v-model="quantity" />
+                        <button @click="plusQuantity">&plus;</button>
+                    </div>
+                </div>
+                <div class="subtotal">
+                    <h3>Subtotal</h3>
+                    <div class="value">
+                        {{ quantity * subtotal | currency }}</div>
+                </div>
+            </section>
+        </template>
+
+        <template slot="footer">
+            <button class="main">
+                <CartIcon /> Add to Cart
+            </button>
+        </template>
     </AppPopup>
 </template>
 
@@ -58,7 +99,8 @@
     export default {
         name: 'FoodPopup',
         components: {
-            AppPopup: require('@/components/AppPopup').default
+            AppPopup: require('@/components/AppPopup').default,
+            CartIcon: require('@/components/icons/CartIcon').default
         },
         data() {
             return {
@@ -113,7 +155,7 @@
                                 name: 'Green Apple Popballs',
                                 additionPrice: 0.00
                             }, {
-                                name: 'Pearl',
+                                name: 'Pearls',
                                 additionPrice: 0.00
                             }
                         ],
@@ -145,23 +187,266 @@
                                 name: 'Green Apple Popballs',
                                 additionPrice: 20.00
                             }, {
-                                name: 'Pearl',
+                                name: 'Pearls',
                                 additionPrice: 20.00
                             }
                         ],
                         selected: []
                     }
                 ],
+                subtotal: 140.00,
+                quantity: 1
             }
         },
         methods: {
             isDisabled(category, optionName) {
                 return category.selected.length >= category.maxPick && category.selected.indexOf(optionName) === -1
+            },
+            updateSubtotal(category, optionName) {
+                if (!category.selected.includes(optionName.name)) {
+                    this.subtotal += optionName.additionPrice
+                } else {
+                    this.subtotal -= optionName.additionPrice
+                }
+            },
+            minusQuantity() {
+                if (this.quantity > 1) this.quantity--
+            },
+            plusQuantity() {
+                if (this.quantity < 20) this.quantity++
             }
         }
     }
 </script>
 
 <style scoped>
+    /deep/ .popup {
+        max-width: 600px;
+    }
 
+    /deep/ .popup__close {
+        top: 10px;
+        right: 10px;
+        color: var(--white);
+    }
+
+    .banner {
+        position: relative;
+    }
+
+    .banner::before {
+        content: "";
+        display: block;
+        padding-top: 180px;
+    }
+
+    .banner::after {
+        content: "";
+        background-image: linear-gradient(var(--black-a50), transparent);
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    .banner img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    h2 {
+        text-transform: capitalize;
+        font-size: 24px;
+    }
+
+    h2 + p {
+        font-size: 20px;
+    }
+
+    .popup__main section:first-child {
+        margin-top: 30px;
+    }
+
+    .popup__main section:not(:first-child):not(:last-child) {
+        margin-top: 20px;
+    }
+
+    .popup__main section:last-child {
+        margin-top: 40px;
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    h3 {
+        font-weight: 600;
+        font-size: 20px;
+        color: var(--black-a70);
+    }
+
+    .tag {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 5px;
+        padding: 2px 4px;
+        font-weight: 400;
+        font-size: 10px;
+        border-radius: 2px;
+    }
+
+    .tag:not(.tag--accent1) {
+        background-color: var(--black-a10);
+        color: var(--black-a50);
+    }
+
+    .tag--accent1 {
+        background-color: var(--accent1);
+        color: var(--white);
+    }
+
+    header small {
+        font-size: inherit;
+        color: var(--black-a40);
+    }
+
+    header div {
+        font-size: 20px;
+    }
+
+    .popup__main section:not(.quantity-and-subtotal) > :not(header) {
+        margin-top: 10px;
+    }
+
+    .option {
+        position: relative;
+    }
+
+    .option:not(:first-child) {
+        margin-top: 3px;
+    }
+
+    .option input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .option label {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .option :checked + label {
+        background-color: var(--accent1-l90);
+        font-weight: 600;
+        color: var(--accent3);
+    }
+
+    .option :disabled + label {
+        color: var(--black-a40);
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    .option span {
+        color: var(--black-a40);
+    }
+
+    .option :checked + label span {
+        color: var(--black-a70);
+        font-weight: 400;
+    }
+
+    .quantity-and-subtotal {
+        background-color: var(--black-a20); /* border */
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 1px;
+    }
+
+    .quantity-and-subtotal > * {
+        background-color: var(--white);
+        margin-top: 0;
+    }
+
+    .quantity-and-subtotal h3 {
+        text-align: center;
+    }
+
+    .counter {
+        display: flex;
+        margin: 10px auto 0;
+        width: max-content;
+    }
+
+    .counter button {
+        background-color: var(--white);
+        position: relative;
+        padding: 0 15px;
+        font-size: 20.31px; /* 10px in width */
+        color: var(--black-a70);
+        border: 1px solid var(--black-a20);
+        z-index: 1;
+    }
+
+    .counter button:first-of-type {
+        border-radius: 5px 0 0 5px;
+    }
+
+    .counter button:last-of-type {
+        border-radius: 0 5px 5px 0;
+    }
+
+    .counter [type="text"] {
+        padding: 0;
+        width: 60px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        font-size: 20px;
+        border-left: 0;
+        border-right: 0;
+        border-radius: 0;
+        pointer-events: none;
+    }
+
+    .value {
+        margin-top: 10px;
+        line-height: 40px;
+        text-align: center;
+        font-weight: 600;
+        font-size: 24px;
+        color: var(--success);
+    }
+
+    .main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 72px;
+        font-size: 24px;
+    }
+
+    .main svg {
+        margin-right: 15px;
+        width: 24px;
+    }
 </style>
