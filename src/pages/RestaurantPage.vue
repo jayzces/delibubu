@@ -197,9 +197,6 @@
             }
         },
         filters: {
-            currency(value) {
-                return `PHP ${parseFloat(value).toFixed(2)}`
-            },
             shorten(value) {
                 let valueLength = String(value).length
                 if (valueLength > 9) {
@@ -456,6 +453,7 @@
     .item {
         display: flex;
         align-items: center;
+        cursor: pointer;
     }
 
     .item img {

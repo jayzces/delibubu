@@ -7,8 +7,14 @@ var VueScrollTo = require('vue-scrollto')
 
 Vue.config.productionTip = false
 
-Vue.use(VueScrollTo, {
-    duration: 100
+Vue.use(VueScrollTo, { duration: 100 })
+
+Vue.filter('currency', value => {
+    let floatValue = parseFloat(value).toFixed(2),
+        // https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+        stringValue = floatValue.toString()
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    return `PHP ${stringValue}`
 })
 
 new Vue({
