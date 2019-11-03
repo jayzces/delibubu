@@ -1,5 +1,7 @@
 <template>
-    <div class="app-popup" @click.self="$emit('close')">
+    <div class="app-popup"
+        @click.self="$emit('close')"
+        :class="{ 'popup-overflow': yOverflow }">
         <div class="popup">
             <button class="popup__close" @click="$emit('close')">
                 <CloseIcon />
@@ -31,6 +33,11 @@
         components: {
             CloseIcon: require('@/components/icons/CloseIcon').default
         },
+        data() {
+            return {
+                yOverflow: false
+            }
+        },
         computed: {
             hasHeaderSlot() {
                 return !!this.$slots.header || !!this.$slots.title
@@ -43,8 +50,13 @@
             }
         },
         mounted() {
-            let body = document.querySelector('body')
+            let body = document.querySelector('body'),
+                popup = this.$el.querySelector('.popup')
+
             body.classList.add('open-popup')
+
+            if (popup.clientHeight > this.$el.clientHeight)
+                this.yOverflow = true
         },
         destroyed() {
             let body = document.querySelector('body')
@@ -81,6 +93,10 @@
         bottom: 0;
         z-index: 5;
         overflow-y: auto;
+    }
+
+    .popup-overflow {
+        align-items: flex-start;
     }
 
     .popup {
