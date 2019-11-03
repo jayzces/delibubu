@@ -2,26 +2,13 @@
     <div class="open-times-dropdown dropdown-container">
         <div class="dropdown__trigger open-times">See Open Times</div>
         <div class="dropdown" :class="{ hidden: !openDropdown }">
-            <div class="row">Sunday
-                <span class="schedule">Closed</span>
-            </div>
-            <div class="row">Monday
-                <span class="schedule">8:00 AM - 5:00 PM</span>
-            </div>
-            <div class="row">Tuesday
-                <span class="schedule">8:00 AM - 5:00 PM</span>
-            </div>
-            <div class="row">Wednesday
-                <span class="schedule">8:00 AM - 5:00 PM</span>
-            </div>
-            <div class="row">Thursday
-                <span class="schedule">8:00 AM - 5:00 PM</span>
-            </div>
-            <div class="row">Friday
-                <span class="schedule">8:00 AM - 5:00 PM</span>
-            </div>
-            <div class="row">Saturday
-                <span class="schedule">8:00 AM - 5:00 PM</span>
+            <div class="row"
+                v-for="day in schedule"
+                :key="day.name">{{ day.name }}
+                <span class="schedule">
+                    <template v-if="!day.open">Closed</template>
+                    <template v-else>{{ day.time.open | time }} - {{ day.time.close | time }}</template>
+                </span>
             </div>
         </div>
     </div>
@@ -33,6 +20,68 @@
     export default {
         name: 'OpenTimesDropdown',
         mixins: [ Dropdown ],
+        data() {
+            return {
+                schedule: [
+                    {
+                        name: 'Sunday',
+                        open: false,
+                        time: {}
+                    }, {
+                        name: 'Monday',
+                        open: true,
+                        time: {
+                            open: '8:00',
+                            close: '17:00'
+                        }
+                    }, {
+                        name: 'Tuesday',
+                        open: true,
+                        time: {
+                            open: '8:00',
+                            close: '17:00'
+                        }
+                    }, {
+                        name: 'Wednesday',
+                        open: true,
+                        time: {
+                            open: '8:00',
+                            close: '17:00'
+                        }
+                    }, {
+                        name: 'Thursday',
+                        open: true,
+                        time: {
+                            open: '8:00',
+                            close: '17:00'
+                        }
+                    }, {
+                        name: 'Friday',
+                        open: true,
+                        time: {
+                            open: '8:00',
+                            close: '17:00'
+                        }
+                    }, {
+                        name: 'Saturday',
+                        open: false,
+                        time: {}
+                    }
+                ]
+            }
+        },
+        filters: {
+            time(value) {
+                let time = value.split(':'),
+                    hour = parseInt(time[0]),
+                    minute = time[1]
+
+                if (hour > 12)      return `${hour - 12}:${minute} PM`
+                else if (hour > 11) return `${time.join(':')} PM`
+                else if (hour > 0)  return `${time.join(':')} AM`
+                return `12:${minute} AM`
+            }
+        },
         mounted() {
             this.initializeDropdowns(this.$el)
         }
