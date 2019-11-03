@@ -118,6 +118,15 @@ input {
     border-radius: 10px;
 }
 
+textarea {
+    padding: 15px 20px;
+    width: 100%;
+    height: 110px;
+    resize: none;
+    border: 1px solid var(--black-a20);
+    border-radius: 10px;
+}
+
 ::placeholder {
     color: var(--black-a40);
 }
