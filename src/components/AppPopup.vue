@@ -77,7 +77,6 @@
             width: calc(100vw - 8px);
         }
     }
-
 </style>
 
 <style scoped>
@@ -99,12 +98,18 @@
         align-items: flex-start;
     }
 
+    @media all and (min-width: 481px) {
+        .popup-overflow {
+            padding: 20px 0;
+        }
+    }
+
     .popup {
         background-color: var(--white);
         position: relative;
+        margin: 0 auto;
         width: 100vw;
         max-width: 400px;
-        margin: 20px auto;
     }
 
     .popup__close {
