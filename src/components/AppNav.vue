@@ -117,8 +117,10 @@
         transition: background 500ms ease-in-out;
     }
 
-    .open-popup .app-nav {
-        right: 8px;
+    @media all and (min-width: 961px) {
+        .open-popup .app-nav {
+            right: 8px;
+        }
     }
 
     .nav-blend {
