@@ -85,14 +85,11 @@
             },
             moveSelectedBar() {
                 let item = document.querySelector('li.selected'),
-                    container = item.parentElement.parentElement,
+                    container = item.closest('.slides__nav'),
                     bar = document.querySelector('.bar')
                 bar.style.cssText = `max-width: ${item.clientWidth}px;
                     left: ${item.offsetLeft}px`
                 container.scrollLeft = item.offsetLeft
-            },
-            goTo(routeName) {
-                this.$router.push({ name: routeName })
             }
         },
         mounted() {
@@ -174,7 +171,6 @@
 
     h3,
     p {
-        margin: 0;
         font-size: 36px;
     }
 

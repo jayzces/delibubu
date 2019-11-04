@@ -117,8 +117,10 @@
         transition: background 500ms ease-in-out;
     }
 
-    .open-popup .app-nav {
-        right: 8px;
+    @media all and (min-width: 961px) {
+        .open-popup .app-nav {
+            right: var(--scrollbar-offset);
+        }
     }
 
     .nav-blend {
@@ -129,7 +131,6 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin: 0 auto;
         height: 100%;
     }
 
@@ -264,5 +265,11 @@
 
     .menu-icon {
         width: 20px;
+    }
+
+    .dropdown--full-width /deep/ .dropdown,
+    .dropdown--right-overflow /deep/ .dropdown,
+    .dropdown--left-overflow /deep/ .dropdown {
+        top: var(--nav-height);
     }
 </style>

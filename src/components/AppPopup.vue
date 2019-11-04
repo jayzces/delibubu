@@ -1,5 +1,7 @@
 <template>
-    <div class="app-popup" @click.self="$emit('close')">
+    <div class="app-popup"
+        @click.self="$emit('close')"
+        :class="{ 'popup-overflow': yOverflow }">
         <div class="popup">
             <button class="popup__close" @click="$emit('close')">
                 <CloseIcon />
@@ -31,6 +33,11 @@
         components: {
             CloseIcon: require('@/components/icons/CloseIcon').default
         },
+        data() {
+            return {
+                yOverflow: false
+            }
+        },
         computed: {
             hasHeaderSlot() {
                 return !!this.$slots.header || !!this.$slots.title
@@ -43,8 +50,17 @@
             }
         },
         mounted() {
-            let body = document.querySelector('body')
+            let body = document.querySelector('body'),
+                popup = this.$el.querySelector('.popup')
+
             body.classList.add('open-popup')
+
+            if (popup.clientHeight > this.$el.clientHeight)
+                this.yOverflow = true
+
+            window.addEventListener('keyup', e => {
+                if (e.key == 'Escape') this.$emit('close')
+            })
         },
         destroyed() {
             let body = document.querySelector('body')
@@ -55,9 +71,15 @@
 
 <style>
     body.open-popup {
-        width: calc(100vw - 8px);
+        width: 100vw;
         height: 100vh;
         overflow-y: hidden;
+    }
+
+    @media all and (min-width: 961px) {
+        body.open-popup {
+            width: calc(100vw - var(--scrollbar-offset));
+        }
     }
 </style>
 
@@ -73,19 +95,36 @@
         right: 0;
         bottom: 0;
         z-index: 5;
+    }
+
+    .popup-overflow {
+        align-items: flex-start;
         overflow-y: auto;
+    }
+
+    @media all and (max-width: 960px) {
+        .popup-overflow::-webkit-scrollbar {
+            width: 0;
+        }
+    }
+
+    @media all and (min-width: 481px) {
+        .popup-overflow {
+            padding: 20px 0;
+        }
     }
 
     .popup {
         background-color: var(--white);
         position: relative;
+        margin: 0 auto;
         width: 100vw;
         max-width: 400px;
-        margin: 20px auto;
     }
 
     .popup__close {
         background-color: transparent;
+        display: flex;
         position: absolute;
         top: 20px;
         right: 20px;

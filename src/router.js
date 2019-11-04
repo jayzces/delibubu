@@ -15,6 +15,10 @@ export default new Router({
             name: 'food-pickup',
             component: require('@/pages/FoodPickup').default
         }, {
+            path: '/restaurant',
+            name: 'restaurant',
+            component: require('@/pages/RestaurantPage').default
+        }, {
             path: '*',
             redirect: {
                 name: 'home'

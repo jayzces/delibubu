@@ -13,7 +13,8 @@
             <div class="restaurants-list max-content">
                 <div class="restaurant"
                     v-for="res in restaurants"
-                    :key="res.name">
+                    :key="res.name"
+                    @click="$router.push({name: 'restaurant'})">
                     <div class="restaurant__image">
                         <img loading="lazy" width="268" height="150.75"
                             :src="res.image_url"
@@ -39,7 +40,9 @@
         name: 'FoodPickup',
         components: {
             SearchBar: require('@/components/food-pickup/SearchBar').default,
-            FavoriteIcon: require('@/components/icons/FavoriteIcon').default,FavoriteIconFilled: require('@/components/icons/FavoriteIcon-Filled').default
+
+            FavoriteIcon: () => import('@/components/icons/FavoriteIcon'),
+            FavoriteIconFilled: () => import('@/components/icons/FavoriteIcon-Filled')
         },
         data() {
             return {
@@ -47,52 +50,52 @@
                 restaurants: [
                     {
                         name: 'Lonesome Dove',
-                        image_url: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80',
+                        image_url: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
                         favorites: 1909,
                         is_favorite: true
                     }, {
                         name: 'Bobby\'s',
-                        image_url: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80',
+                        image_url: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
                         favorites: 8310,
                         is_favorite: true
                     }, {
                         name: 'Melting Pot',
-                        image_url: 'https://images.unsplash.com/photo-1559329007-40df8a9345d8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80',
+                        image_url: 'https://images.unsplash.com/photo-1559329007-40df8a9345d8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
                         favorites: 2127,
                         is_favorite: false
                     }, {
                         name: 'Daytime Place',
-                        image_url: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80',
+                        image_url: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
                         favorites: 423,
                         is_favorite: false
                     }, {
                         name: 'Easy Eats',
-                        image_url: 'https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80',
+                        image_url: 'https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
                         favorites: 267,
                         is_favorite: true
                     }, {
                         name: 'Macro Bites',
-                        image_url: 'https://images.unsplash.com/photo-1525610553991-2bede1a236e2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80',
+                        image_url: 'https://images.unsplash.com/photo-1525610553991-2bede1a236e2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
                         favorites: 3889,
                         is_favorite: false
                     }, {
                         name: 'Grubber Hub',
-                        image_url: 'https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80',
+                        image_url: 'https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
                         favorites: 6469,
                         is_favorite: false
                     }, {
                         name: 'Cheerful Rhino',
-                        image_url: 'https://images.unsplash.com/photo-1502301103665-0b95cc738daf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2000&q=80',
+                        image_url: 'https://images.unsplash.com/photo-1502301103665-0b95cc738daf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
                         favorites: 2135,
                         is_favorite: true
                     }, {
                         name: 'Home Cooking Experience',
-                        image_url: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80',
+                        image_url: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
                         favorites: 1732,
                         is_favorite: true
                     }, {
                         name: 'Fare & Feed',
-                        image_url: 'https://images.unsplash.com/photo-1554679665-f5537f187268?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80',
+                        image_url: 'https://images.unsplash.com/photo-1554679665-f5537f187268?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
                         favorites: 3028,
                         is_favorite: false
                     }
@@ -132,10 +135,6 @@
         height: max-content;
     }
 
-    .max-content {
-        margin: 0 auto;
-    }
-
     h1,
     p {
         max-height: 200px;
@@ -150,10 +149,8 @@
     }
 
     h1 {
-        margin: 0;
         font-size: inherit;
         color: var(--accent3);
-
     }
 
     .filtering h1 {
@@ -161,7 +158,6 @@
     }
 
     p {
-        margin: 0;
         color: var(--black-a70);
         text-shadow:
             -1px -1px 0 var(--white),

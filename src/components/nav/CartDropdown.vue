@@ -1,5 +1,5 @@
 <template>
-    <div class="cart dropdown-container">
+    <div class="cart-dropdown dropdown-container">
         <div class="icon dropdown__trigger">
             <CartIcon /> <div class="count">6</div>
         </div>
