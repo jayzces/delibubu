@@ -119,7 +119,7 @@
 
     @media all and (min-width: 961px) {
         .open-popup .app-nav {
-            right: 8px;
+            right: var(--scrollbar-offset);
         }
     }
 

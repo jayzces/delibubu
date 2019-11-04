@@ -13,7 +13,6 @@
     --black-a25: hsla(222, 24%, 11%, 0.25);
     --black-a20: hsla(222, 24%, 11%, 0.2);
     --black-a10: hsla(222, 24%, 11%, 0.1);
-    --black3:    hsl(223, 3%, 55%); /* #8A8C91 */
 
     --success: hsl(79, 54%, 51%); /* #9BC53D */
     --error:   hsl(0, 86%, 55%); /* #EF2C2C */
@@ -29,6 +28,7 @@
 
     --max-content-width: 1420px;
     --dropdown-arrow-position: calc(50% - 7px);
+    --scrollbar-offset: 5px;
 
     /* --nav-height defined in AppNav.vue */
 
@@ -42,11 +42,11 @@
 }
 
 ::-webkit-scrollbar {
-    width: 8px;
+    width: var(--scrollbar-offset);
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: var(--black3);
+    background-color: var(--black-a50);
     border-radius: 4px;
 }
 

@@ -57,6 +57,10 @@
 
             if (popup.clientHeight > this.$el.clientHeight)
                 this.yOverflow = true
+
+            window.addEventListener('keyup', e => {
+                if (e.key == 'Escape') this.$emit('close')
+            })
         },
         destroyed() {
             let body = document.querySelector('body')
@@ -74,7 +78,7 @@
 
     @media all and (min-width: 961px) {
         body.open-popup {
-            width: calc(100vw - 8px);
+            width: calc(100vw - var(--scrollbar-offset));
         }
     }
 </style>
@@ -91,11 +95,17 @@
         right: 0;
         bottom: 0;
         z-index: 5;
-        overflow-y: auto;
     }
 
     .popup-overflow {
         align-items: flex-start;
+        overflow-y: auto;
+    }
+
+    @media all and (max-width: 960px) {
+        .popup-overflow::-webkit-scrollbar {
+            width: 0;
+        }
     }
 
     @media all and (min-width: 481px) {
