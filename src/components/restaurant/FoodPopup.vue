@@ -44,12 +44,17 @@
                             :value="opt.name"
                             :disabled="isDisabled(cat, opt.name)" />
 
-                        <label :for="`cat-${cIndex}-opt-${oIndex}`"
-                            @click="updateSubtotal(cat, opt)">{{ opt.name }}
-                            <span v-if="opt.additionPrice > 0"
-                                class="additional-price"> +
-                                {{ opt.additionPrice | currency }}</span>
-                        </label>
+                        <template v-if="opt.additionalPrice > 0">
+                            <label :for="`cat-${cIndex}-opt-${oIndex}`"
+                                @click="updateSubtotal(cat, opt)">{{ opt.name }}
+                                <span class="additional-price"> +
+                                    {{ opt.additionalPrice | currency }}</span>
+                            </label>
+                        </template>
+                        <template v-else>
+                            <label :for="`cat-${cIndex}-opt-${oIndex}`">
+                                {{ opt.name }}</label>
+                        </template>
                     </div>
                 </div>
             </section>
@@ -112,19 +117,19 @@
                         options: [
                             {
                                 name: '100%',
-                                additionPrice: 0.00
+                                additionalPrice: 0.00
                             }, {
                                 name: '75%',
-                                additionPrice: 0.00
+                                additionalPrice: 0.00
                             }, {
                                 name: '50%',
-                                additionPrice: 0.00
+                                additionalPrice: 0.00
                             }, {
                                 name: '25%',
-                                additionPrice: 0.00
+                                additionalPrice: 0.00
                             }, {
                                 name: 'No Sugar',
-                                additionPrice: 0.00
+                                additionalPrice: 0.00
                             }
                         ],
                         selected: null
@@ -135,28 +140,28 @@
                         options: [
                             {
                                 name: 'Egg Pudding',
-                                additionPrice: 0.00
+                                additionalPrice: 0.00
                             }, {
                                 name: 'Mango Pudding',
-                                additionPrice: 0.00
+                                additionalPrice: 0.00
                             }, {
                                 name: 'Milk Pudding',
-                                additionPrice: 0.00
+                                additionalPrice: 0.00
                             }, {
                                 name: 'Rainbow Jelly',
-                                additionPrice: 0.00
+                                additionalPrice: 0.00
                             }, {
                                 name: 'Grass Jelly',
-                                additionPrice: 0.00
+                                additionalPrice: 0.00
                             }, {
                                 name: 'Oreo',
-                                additionPrice: 0.00
+                                additionalPrice: 0.00
                             }, {
                                 name: 'Green Apple Popballs',
-                                additionPrice: 0.00
+                                additionalPrice: 0.00
                             }, {
                                 name: 'Pearls',
-                                additionPrice: 0.00
+                                additionalPrice: 0.00
                             }
                         ],
                         selected: []
@@ -167,28 +172,28 @@
                         options: [
                             {
                                 name: 'Egg Pudding',
-                                additionPrice: 20.00
+                                additionalPrice: 20.00
                             }, {
                                 name: 'Mango Pudding',
-                                additionPrice: 20.00
+                                additionalPrice: 20.00
                             }, {
                                 name: 'Milk Pudding',
-                                additionPrice: 20.00
+                                additionalPrice: 20.00
                             }, {
                                 name: 'Rainbow Jelly',
-                                additionPrice: 20.00
+                                additionalPrice: 20.00
                             }, {
                                 name: 'Grass Jelly',
-                                additionPrice: 20.00
+                                additionalPrice: 20.00
                             }, {
                                 name: 'Oreo',
-                                additionPrice: 20.00
+                                additionalPrice: 20.00
                             }, {
                                 name: 'Green Apple Popballs',
-                                additionPrice: 20.00
+                                additionalPrice: 20.00
                             }, {
                                 name: 'Pearls',
-                                additionPrice: 20.00
+                                additionalPrice: 20.00
                             }
                         ],
                         selected: []
@@ -204,9 +209,9 @@
             },
             updateSubtotal(category, optionName) {
                 if (!category.selected.includes(optionName.name)) {
-                    this.subtotal += optionName.additionPrice
+                    this.subtotal += optionName.additionalPrice
                 } else {
-                    this.subtotal -= optionName.additionPrice
+                    this.subtotal -= optionName.additionalPrice
                 }
             },
             minusQuantity() {
