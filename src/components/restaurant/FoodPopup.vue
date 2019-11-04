@@ -94,7 +94,6 @@
                     </div>
                 </section>
             </form>
-
         </template>
 
         <template slot="footer">
