@@ -186,7 +186,7 @@
                         ]
                     }
                 ],
-                openPopup: false
+                openPopup: true
             }
         },
         methods: {

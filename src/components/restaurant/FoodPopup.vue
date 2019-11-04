@@ -10,90 +10,95 @@
             <h2>Plain Milk Tea 1</h2>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate ipsum nulla vitae dolor, consequatur eum, modi animi laboriosam ut temporibus totam. Corrupti tempore architecto repellendus! Molestiae accusamus doloremque deleniti voluptatum!</p>
 
-            <section class="category"
-                v-for="(cat, cIndex) in categories"
-                :key="cat.name">
-                <header>
-                    <h3>{{ cat.name }}
-                        <span v-if="cat.required"
-                            class="tag tag--accent1">Required</span>
-                        <span v-else class="tag">Optional</span>
-                    </h3>
+            <form>
+                <section class="category"
+                    v-for="(cat, cIndex) in categories"
+                    :key="cat.name">
+                    <header>
+                        <h3>{{ cat.name }}
+                            <span v-if="cat.required"
+                                class="tag tag--accent1">Required</span>
+                            <span v-else class="tag">Optional</span>
+                        </h3>
 
-                    <small>Pick
-                        <template v-if="cat.maxPick > 1">at most</template>
-                        {{ cat.maxPick }}
-                    </small>
-                </header>
+                        <small>Pick
+                            <template v-if="cat.maxPick > 1">at most</template>
+                            {{ cat.maxPick }}
+                        </small>
+                    </header>
 
-                <div class="options">
-                    <div class="option"
-                        v-for="(opt, oIndex) in cat.options"
-                        :key="opt.name">
-                        <input type="radio"
-                            v-if="cat.maxPick == 1"
-                            :name="`cat-${cIndex}-opt`"
-                            :id="`cat-${cIndex}-opt-${oIndex}`"
-                            v-model="cat.selected"
-                            :value="opt.name" />
-                        <input type="checkbox"
-                            v-else
-                            :name="`cat-${cIndex}-opt`"
-                            :id="`cat-${cIndex}-opt-${oIndex}`"
-                            v-model="cat.selected"
-                            :value="opt.name"
-                            :disabled="isDisabled(cat, opt.name)" />
+                    <div class="options">
+                        <div class="option"
+                            v-for="(opt, oIndex) in cat.options"
+                            :key="opt.name">
+                            <input type="radio"
+                                v-if="cat.maxPick == 1"
+                                :name="`cat-${cIndex}-opt`"
+                                :id="`cat-${cIndex}-opt-${oIndex}`"
+                                v-model="cat.selected"
+                                :value="opt.name" />
+                            <input type="checkbox"
+                                v-else
+                                :name="`cat-${cIndex}-opt`"
+                                :id="`cat-${cIndex}-opt-${oIndex}`"
+                                v-model="cat.selected"
+                                :value="opt.name"
+                                :disabled="isDisabled(cat, opt.name)" />
 
-                        <template v-if="opt.additionalPrice > 0">
-                            <label :for="`cat-${cIndex}-opt-${oIndex}`"
-                                @click="updateSubtotal(cat, opt)">{{ opt.name }}
-                                <span class="additional-price"> +
-                                    {{ opt.additionalPrice | currency }}</span>
-                            </label>
-                        </template>
-                        <template v-else>
-                            <label :for="`cat-${cIndex}-opt-${oIndex}`">
-                                {{ opt.name }}</label>
-                        </template>
+                            <template v-if="opt.additionalPrice > 0">
+                                <label :for="`cat-${cIndex}-opt-${oIndex}`"
+                                    @click="updateSubtotal(cat, opt)">{{ opt.name }}
+                                    <span class="additional-price"> +
+                                        {{ opt.additionalPrice | currency }}</span>
+                                </label>
+                            </template>
+                            <template v-else>
+                                <label :for="`cat-${cIndex}-opt-${oIndex}`">
+                                    {{ opt.name }}</label>
+                            </template>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section class="special-notes">
-                <header>
-                    <h3>Special Notes</h3>
-                </header>
+                <section class="special-notes">
+                    <header>
+                        <h3>Special Notes</h3>
+                    </header>
 
-                <textarea placeholder="Do you have any special preferences?"></textarea>
-            </section>
+                    <textarea placeholder="Do you have any special preferences?"></textarea>
+                </section>
 
-            <section class="preparation-time">
-                <header>
-                    <h3>Preparation Time</h3>
+                <section class="preparation-time">
+                    <header>
+                        <h3>Preparation Time</h3>
 
-                    <div>50 minute/s</div>
-                </header>
-            </section>
+                        <div>50 minute/s</div>
+                    </header>
+                </section>
 
-            <section class="quantity-and-subtotal">
-                <div class="quantity">
-                    <h3>Quantity</h3>
-                    <div class="counter">
-                        <button @click="minusQuantity">&minus;</button>
-                        <input type="text" v-model="quantity" />
-                        <button @click="plusQuantity">&plus;</button>
+                <section class="quantity-and-subtotal">
+                    <div class="quantity">
+                        <h3>Quantity</h3>
+                        <div class="counter">
+                            <button
+                                @click.prevent="minusQuantity">&minus;</button>
+                            <input type="text" v-model="quantity" />
+                            <button
+                                @click.prevent="plusQuantity">&plus;</button>
+                        </div>
                     </div>
-                </div>
-                <div class="subtotal">
-                    <h3>Subtotal</h3>
-                    <div class="value">
-                        {{ quantity * subtotal | currency }}</div>
-                </div>
-            </section>
+                    <div class="subtotal">
+                        <h3>Subtotal</h3>
+                        <div class="value">
+                            {{ quantity * subtotal | currency }}</div>
+                    </div>
+                </section>
+            </form>
+
         </template>
 
         <template slot="footer">
-            <button class="main">
+            <button class="main" @click="$emit('close')">
                 <CartIcon /> Add to Cart
             </button>
         </template>
@@ -245,6 +250,12 @@
         padding-top: 180px;
     }
 
+    @media all and (max-width: 480px) {
+        .banner::before {
+            padding-top: 100px;
+        }
+    }
+
     .banner::after {
         content: "";
         background-image: linear-gradient(var(--black-a50), transparent);
@@ -272,20 +283,56 @@
         font-size: 24px;
     }
 
+    @media all and (max-width: 600px) {
+        h2 {
+            font-size: 18px;
+        }
+    }
+
     h2 + p {
         font-size: 20px;
     }
 
-    .popup__main section:first-child {
+    @media all and (max-width: 600px) {
+        h2 + p {
+            font-size: inherit;
+        }
+    }
+
+    @media all and (max-width: 480px) {
+        /deep/ .popup__main {
+            padding: 20px 15px;
+        }
+
+        /deep/ footer {
+            padding: 0 15px 15px;
+        }
+    }
+
+    form section:first-child {
         margin-top: 30px;
     }
 
-    .popup__main section:not(:first-child):not(:last-child) {
+    form section:not(:first-child):not(:last-child) {
         margin-top: 20px;
     }
 
-    .popup__main section:last-child {
+    form section:last-child {
         margin-top: 40px;
+    }
+
+    @media all and (max-width: 480px) {
+        form section:first-child {
+            margin-top: 20px;
+        }
+
+        form section:not(:first-child):not(:last-child) {
+            margin-top: 15px;
+        }
+
+        form section:last-child {
+            margin-top: 20px;
+        }
     }
 
     header {
@@ -298,6 +345,12 @@
         font-weight: 600;
         font-size: 20px;
         color: var(--black-a70);
+    }
+
+    @media all and (max-width: 600px) {
+        h3 {
+            font-size: inherit;
+        }
     }
 
     .tag {
@@ -325,12 +378,30 @@
         color: var(--black-a40);
     }
 
+    @media all and (max-width: 480px) {
+        header small {
+            font-size: 14px;
+        }
+    }
+
     header div {
         font-size: 20px;
     }
 
+    @media all and (max-width: 480px) {
+        header div {
+            font-size: inherit;
+        }
+    }
+
     .popup__main section:not(.quantity-and-subtotal) > :not(header) {
         margin-top: 10px;
+    }
+
+    @media all and (max-width: 480px) {
+        .popup__main section:not(.quantity-and-subtotal) > :not(header) {
+            margin-top: 5px;
+        }
     }
 
     .option {
@@ -358,6 +429,13 @@
         cursor: pointer;
     }
 
+    @media all and (max-width: 480px) {
+        .option label {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    }
+
     .option :checked + label {
         background-color: var(--accent1-l90);
         font-weight: 600;
@@ -379,16 +457,31 @@
         font-weight: 400;
     }
 
-    .quantity-and-subtotal {
-        background-color: var(--black-a20); /* border */
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-gap: 1px;
+    @media all and (max-width: 480px) {
+        textarea {
+            padding: 10px;
+            height: 65px;
+        }
+    }
+
+    @media all and (min-width: 481px) {
+        .quantity-and-subtotal {
+            background-color: var(--black-a20); /* border */
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 1px;
+        }
     }
 
     .quantity-and-subtotal > * {
         background-color: var(--white);
         margin-top: 0;
+    }
+
+    @media all and (max-width: 480px) {
+        .subtotal {
+            margin-top: 20px;
+        }
     }
 
     .quantity-and-subtotal h3 {
@@ -433,12 +526,16 @@
     }
 
     .value {
-        margin-top: 10px;
-        line-height: 40px;
         text-align: center;
         font-weight: 600;
         font-size: 24px;
         color: var(--success);
+    }
+
+    @media all and (min-width: 481px) {
+        .value {
+            margin-top: 10px;
+        }
     }
 
     .main {
@@ -450,8 +547,21 @@
         font-size: 24px;
     }
 
+    @media all and (max-width: 480px) {
+        .main {
+            height: 56px;
+            font-size: 20px;
+        }
+    }
+
     .main svg {
         margin-right: 15px;
         width: 24px;
+    }
+
+    @media all and (max-width: 480px) {
+        .main svg {
+            width: 20px;
+        }
     }
 </style>

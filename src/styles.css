@@ -119,6 +119,7 @@ input {
 }
 
 textarea {
+    display: block;
     padding: 15px 20px;
     width: 100%;
     height: 110px;
