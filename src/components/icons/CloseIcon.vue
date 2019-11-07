@@ -9,3 +9,9 @@
         name: 'CloseIcon'
     }
 </script>
+
+<style scoped>
+    svg {
+        height: 100%;
+    }
+</style>

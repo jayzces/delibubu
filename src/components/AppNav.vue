@@ -1,5 +1,5 @@
 <template>
-    <nav class="app-nav" :class="{ 'nav-blend': blend }">
+    <nav class="app-nav" :class="{ 'nav-blend': blend && !loggedIn }">
         <div class="nav__content max-content">
             <div class="left">
                 <button class="user-dropdowns-toggle"
@@ -23,7 +23,7 @@
             <div class="user-dropdowns" v-else
                 :class="{ 'show-dropdown': showUserDropdowns }">
                 <LocationDropdown />
-                <UserDropdown />
+                <UserDropdown @logout="showUserDropdowns = false" />
                 <NotificationDropdown />
                 <CartDropdown />
             </div>
@@ -72,13 +72,12 @@
         },
         mounted() {
             Eventbus.$on('blendNav', value => {
-                if (value) {
-                    this.blend = true
+                this.blend = value
+
+                if (value)
                     window.addEventListener('scroll', this.scrollFunction)
-                } else {
-                    this.blend = false
+                else
                     window.removeEventListener('scroll', this.scrollFunction)
-                }
             })
 
             Eventbus.$on('openSignupPopup', () => {
@@ -107,24 +106,21 @@
 <style scoped>
     .app-nav {
         background-color: var(--white);
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
+        position: relative;
         padding: 0 15px;
         height: var(--nav-height);
-        z-index: 2;
         transition: background 500ms ease-in-out;
+        z-index: 3;
+    }
+
+    .nav-blend {
+        background-color: transparent;
     }
 
     @media all and (min-width: 961px) {
         .open-popup .app-nav {
             right: var(--scrollbar-offset);
         }
-    }
-
-    .nav-blend {
-        background-color: transparent;
     }
 
     .nav__content {
@@ -265,6 +261,11 @@
 
     .menu-icon {
         width: 20px;
+    }
+
+    /deep/ .dropdown {
+        left: unset;
+        right: 0;
     }
 
     .dropdown--full-width /deep/ .dropdown,

@@ -10,7 +10,7 @@
             <template v-else>Log Out</template>
         </button> -->
 
-        <AppNav />
+        <AppHeader />
         <router-view />
         <AppFooter />
     </div>
@@ -22,7 +22,7 @@
     export default {
         name: 'App',
         components: {
-            AppNav: require('@/components/AppNav').default,
+            AppHeader: require('@/components/AppHeader').default,
             AppFooter: require('@/components/AppFooter').default
         },
         methods: {
@@ -42,6 +42,6 @@
     @import 'styles.css';
 
     .app {
-        padding-top: var(--nav-height);
+        /* padding-top: var(--nav-height); */
     }
 </style>

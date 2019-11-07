@@ -28,7 +28,7 @@
 </script>
 
 <style scoped>
-    .home {
-        margin-top: calc(-1 * var(--nav-height));
+    .nav-blend + .home {
+        /* margin-top: calc(-1 * var(--nav-height)); */
     }
 </style>

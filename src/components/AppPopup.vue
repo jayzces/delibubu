@@ -88,18 +88,19 @@
         background-color: var(--black-a50);
         display: flex;
         justify-content: center;
-        align-items: center;
+        /* align-items: center; */
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
         z-index: 5;
+        overflow-y: auto;
+        max-height: 100vh;
     }
 
     .popup-overflow {
         align-items: flex-start;
-        overflow-y: auto;
     }
 
     @media all and (max-width: 960px) {
@@ -117,9 +118,10 @@
     .popup {
         background-color: var(--white);
         position: relative;
-        margin: 0 auto;
+        margin: auto 0;
         width: 100vw;
         max-width: 400px;
+        height: max-content;
     }
 
     .popup__close {

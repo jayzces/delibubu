@@ -55,7 +55,7 @@
                 showErrors: false,
                 emailError: 'Email is already taken.',
                 usernameError: 'Username is already taken.',
-                passwordError: 'Password does not match.'
+                passwordError: 'Password does not match.',
             }
         },
         methods: {
@@ -66,6 +66,11 @@
                 } else {
                     this.login()
                     this.$emit('close')
+
+                    Eventbus.$emit('addAlert', {
+                        type: 'info',
+                        message: 'We sent an activation link to your email, <strong>valerieboyle@gmail.com</strong>. Please activate your account to fully avail of Delibaba’s services.'
+                    })
                 }
             },
             openLoginPopup() {
