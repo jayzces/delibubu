@@ -3,7 +3,7 @@
         <div class="content">
             <AppLogo />
             <p>Delivering convenience to you wherever you may be. <br /> Food, Grocery and Errand Services available for your comfort.</p>
-            <button class="main" @click="openSignupPopup">Sign Up Now</button>
+            <button class="main button--large" @click="openSignupPopup">Sign Up Now</button>
         </div>
 
         <a href="#services-slides" class="arrow">arrow</a>
@@ -64,7 +64,7 @@
         --sub: var(--white);
     }
 
-    @media (min-width: 481px) and (max-width: 650px) {
+    @media (min-width: 481px) and (max-width: 850px) {
         .app-logo {
             width: 240px;
         }
@@ -83,7 +83,7 @@
         font-size: 36px;
     }
 
-    @media (min-width: 481px) and (max-width: 650px) {
+    @media (min-width: 481px) and (max-width: 850px) {
         p {
             margin-top: 10px;
             line-height: calc(24px * 1.4);
@@ -99,28 +99,21 @@
         }
     }
 
-    button {
-        display: block;
-        margin: 60px auto 0;
-        padding-top: 20px;
-        padding-bottom: 20px;
-        max-width: 340px;
-        width: 100%;
-        font-size: 24px;
+    @media all and (min-width: 851px) {
+        button {
+            margin-top: 60px;
+        }
     }
 
-    @media (min-width: 481px) and (max-width: 650px) {
+    @media (min-width: 481px) and (max-width: 850px) {
         button {
             margin-top: 30px;
         }
     }
 
-    @media all and (max-width: 481px) {
+    @media all and (max-width: 480px) {
         button {
             margin-top: 15px;
-            padding: 12.5px 40px;
-            font-size: 16px;
-            width: auto;
         }
     }
 

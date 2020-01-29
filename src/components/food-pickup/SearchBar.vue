@@ -18,16 +18,11 @@
             }
         },
         components: {
-            SearchIcon: require('@/components/icons/SearchIcon').default
+            SearchIcon: () => import('@/components/icons/SearchIcon')
         },
         data() {
             return {
                 value: ''
-            }
-        },
-        methods: {
-            changeHandler() {
-                console.log('hey bitch')
             }
         }
     }

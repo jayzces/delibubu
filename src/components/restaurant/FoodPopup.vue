@@ -97,7 +97,7 @@
         </template>
 
         <template slot="footer">
-            <button class="main" @click="$emit('close')">
+            <button class="main button--large add-cart-button" @click="$emit('close')">
                 <CartIcon /> Add to Cart
             </button>
         </template>
@@ -109,7 +109,7 @@
         name: 'FoodPopup',
         components: {
             AppPopup: require('@/components/AppPopup').default,
-            CartIcon: require('@/components/icons/CartIcon').default
+            CartIcon: () => import('@/components/icons/CartIcon')
         },
         data() {
             return {
@@ -537,29 +537,20 @@
         }
     }
 
-    .main {
+    .add-cart-button {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 100%;
-        height: 72px;
-        font-size: 24px;
+        max-width: none;
     }
 
-    @media all and (max-width: 480px) {
-        .main {
-            height: 56px;
-            font-size: 20px;
-        }
-    }
-
-    .main svg {
+    .add-cart-button svg {
         margin-right: 15px;
         width: 24px;
     }
 
-    @media all and (max-width: 480px) {
-        .main svg {
+    @media all and (max-width: 850px) {
+        .add-cart-button svg {
             width: 20px;
         }
     }

@@ -34,7 +34,7 @@
         </form>
 
         <template slot="footer">
-            <button class="main" @click="event">Sign Up</button>
+            <button class="main button--medium" @click="event">Sign Up</button>
             <p>Already have an account
                 <a href="" @click.prevent="openLoginPopup">Log in.</a></p>
         </template>
@@ -86,12 +86,6 @@
         margin-top: 10px;
         font-size: 12px;
         color: var(--error);
-    }
-
-    .main {
-        display: block;
-        padding: 15px 0;
-        width: 100%;
     }
 
     p:not(.error) {

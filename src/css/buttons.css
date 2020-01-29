@@ -1,0 +1,45 @@
+button {
+    background-color: var(--accent1);
+    padding: 10px 20px;
+    color: var(--white);
+    border: 0;
+    border-radius: 40px;
+    cursor: pointer;
+}
+
+@media all and (max-width: 480px) {
+    button {
+        padding: 7.5px 10px;
+    }
+}
+
+.button--large {
+    display: block;
+    margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 100%;
+    max-width: 260px;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 24px;
+}
+
+@media all and (max-width: 850px) {
+    .button--large {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        max-width: 200px;
+        font-size: 16px;
+    }
+}
+
+.button--medium {
+    display: block;
+    margin: 0 auto;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100%;
+    text-transform: uppercase;
+    font-weight: 700;
+}

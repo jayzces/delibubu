@@ -1,3 +1,4 @@
+@import "css/buttons.css";
 @import "css/dropdowns.css";
 @import "css/inputFields.css";
 
@@ -79,26 +80,6 @@ button {
     font-size: inherit;
 }
 
-button {
-    background-color: var(--accent1);
-    padding: 10px 20px;
-    color: var(--white);
-    border: 0;
-    border-radius: 40px;
-    cursor: pointer;
-}
-
-button.main {
-    text-transform: uppercase;
-    font-weight: 700;
-}
-
-@media all and (max-width: 480px) {
-    button {
-        padding: 7.5px 10px;
-    }
-}
-
 a {
     text-decoration: none;
     color: var(--accent1);
@@ -160,4 +141,15 @@ img {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+}
+
+h1.page-title {
+    font-size: 24px;
+    color: var(--accent3);
+}
+
+@media all and (max-width: 480px) {
+    h1.page-title {
+        font-size: 20px;
+    }
 }

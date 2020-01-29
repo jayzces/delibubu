@@ -19,6 +19,10 @@ export default new Router({
             name: 'restaurant',
             component: require('@/pages/RestaurantPage').default
         }, {
+            path: '/notifications',
+            name: 'notifications',
+            component: require('@/pages/NotificationsPage').default
+        }, {
             path: '*',
             redirect: {
                 name: 'home'

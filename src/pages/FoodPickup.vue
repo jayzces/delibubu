@@ -2,7 +2,7 @@
     <main class="food-pickup">
         <header :class="{ filtering: searchValue.length > 0 }">
             <div class="max-content">
-                <h1>Food Pickup and Delivery</h1>
+                <h1 class="page-title">Food Pickup and Delivery</h1>
                 <p>Your favorites meals and treats delivered right to your door.</p>
 
                 <SearchBar @changeValue="updateSearch" />
@@ -30,7 +30,7 @@
                 </div>
             </div>
 
-            <button class="load-more">Load More</button>
+            <button class="button--large">Load More</button>
         </section>
     </main>
 </template>
@@ -148,11 +148,6 @@
         }
     }
 
-    h1 {
-        font-size: inherit;
-        color: var(--accent3);
-    }
-
     .filtering h1 {
         max-height: 0;
     }
@@ -262,34 +257,13 @@
         width: 20px;
     }
 
-    .load-more {
+    .button--large {
         display: none;
-        margin: 50px auto 0;
-        padding: 20px 0;
-        width: 100%;
-        max-width: 260px;
-        text-transform: uppercase;
-        font-weight: 700;
-        font-size: 24px;
+        margin-top: 50px;
         border: 1px solid var(--white);
     }
 
-    .filtering + .restaurants .load-more {
+    .filtering + .restaurants .button--large {
         display: block;
-    }
-
-    @media all and (max-width: 650px) {
-        .load-more {
-            padding-top: 15px;
-            padding-bottom: 15px;
-            max-width: 200px;
-            font-size: 20px;
-        }
-    }
-
-    @media all and (max-width: 650px) {
-        .load-more {
-            font-size: 18px;
-        }
     }
 </style>
