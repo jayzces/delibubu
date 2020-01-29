@@ -9,7 +9,7 @@
                 <div class="slide__content max-content">
                     <h3>{{ svc.title }}</h3>
                     <p v-html="svc.subtitle">{{ svc.subtitle }}</p>
-                    <button class="main"
+                    <button class="main button--large"
                         @click="$router.push({ name: svc.route })">
                         {{ svc.button }}</button>
                 </div>
@@ -189,22 +189,12 @@
     }
 
     button.main {
-        display: block;
         margin: 30px 0 0;
-        padding-top: 20px;
-        padding-bottom: 20px;
-        max-width: 260px;
-        width: 100%;
-        font-size: 24px;
     }
 
     @media all and (max-width: 860px) {
         button.main {
             margin-top: 15px;
-            padding-top: 15px;
-            padding-bottom: 15px;
-            max-width: 160px;
-            font-size: 16px;
         }
     }
 

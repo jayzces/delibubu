@@ -16,7 +16,7 @@
                 </div>
             </section>
 
-            <button class="load-more">Load More</button>
+            <button class="button--large load-more">Load More</button>
         </div>
     </main>
 </template>
@@ -153,37 +153,15 @@
         color: var(--black-a70);
     }
 
-    .load-more {
+    .button--large {
         background-color: transparent;
-        display: block;
-        margin: 50px auto 0;
-        padding: 20px 0;
-        width: 100%;
-        max-width: 260px;
-        text-transform: uppercase;
-        font-weight: 700;
-        font-size: 22px;
+        margin-top: 50px;
         color: var(--accent1);
         border: 2px solid var(--accent1);
     }
 
-    @media all and (max-width: 650px) {
-        .load-more {
-            padding-top: 15px;
-            padding-bottom: 15px;
-            max-width: 200px;
-            font-size: 20px;
-        }
-    }
-
-    @media all and (max-width: 650px) {
-        .load-more {
-            font-size: 18px;
-        }
-    }
-
     @media all and (max-width: 480px) {
-        .load-more {
+        .button-large {
             margin-top: 20px;
         }
     }

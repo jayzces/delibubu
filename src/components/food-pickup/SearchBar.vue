@@ -24,11 +24,6 @@
             return {
                 value: ''
             }
-        },
-        methods: {
-            changeHandler() {
-                console.log('hey bitch')
-            }
         }
     }
 </script>
