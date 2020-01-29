@@ -20,7 +20,9 @@
                 </div>
             </div>
 
-            <button>View All Notifications</button>
+            <router-link :to="{ name: 'notifications' }">
+                <button>View All Notifications</button>
+            </router-link>
         </div>
     </div>
 </template>
@@ -38,23 +40,23 @@
             return {
                 notifications: [
                     {
-                        avatar_url: 'https://images.unsplash.com/flagged/photo-1570054500258-ac677805d6d3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80',
-                        sender: 'Henrietta Cole',
+                        avatar_url: 'https://images.unsplash.com/flagged/photo-1570054500258-ac677805d6d3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=50',
+                        sender: 'The Waterfront Lobster',
                         message: 'Cupidatat ullamco sint Lorem duis cupidatat aliqua officia aliquip velit duis incididunt excepteur excepteur do.',
                         time: '13 minutes ago',
                         read: false
                     }, {
-                        avatar_url: 'https://images.unsplash.com/photo-1570097482939-0af870ad7914?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80',
-                        sender: 'Rosalie Roy',
+                        avatar_url: 'https://images.unsplash.com/photo-1570097482939-0af870ad7914?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=50',
+                        sender: 'The Oval Deer',
                         message: 'Deserunt laboris amet culpa cillum qui mollit ea.',
                         time: '30 minutes ago',
-                        read: false
+                        read: true
                     }, {
-                        avatar_url: 'https://images.unsplash.com/photo-1570095378080-c1bb312bb7c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80',
-                        sender: 'Fannie Ramirez',
+                        avatar_url: 'https://images.unsplash.com/photo-1570095378080-c1bb312bb7c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=50',
+                        sender: 'The Fire Gate',
                         message: 'Ipsum elit occaecat enim sint proident proident esse.',
                         time: '48 minutes ago',
-                        read: false
+                        read: true
                     }
                 ]
             }
