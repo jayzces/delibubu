@@ -109,7 +109,7 @@
         name: 'FoodPopup',
         components: {
             AppPopup: require('@/components/AppPopup').default,
-            CartIcon: require('@/components/icons/CartIcon').default
+            CartIcon: () => import('@/components/icons/CartIcon')
         },
         data() {
             return {

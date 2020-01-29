@@ -20,7 +20,7 @@
     export default {
         name: 'UserDropdown',
         components: {
-            UserIcon: require('@/components/icons/UserIcon').default
+            UserIcon: () => import('@/components/icons/UserIcon')
         },
         mixins: [ Dropdown ],
         methods: {

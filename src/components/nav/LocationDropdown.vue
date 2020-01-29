@@ -24,7 +24,7 @@
     export default {
         name: 'LocationDropdown',
         components: {
-            LocationIcon: require('@/components/icons/LocationIcon').default,
+            LocationIcon: () => import('@/components/icons/LocationIcon'),
             AppSelect: require('@/components/AppSelect').default
         },
         mixins: [ Dropdown ],
