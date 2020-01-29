@@ -78,7 +78,7 @@ export const Dropdown = {
         }
     },
     watch: {
-        openDropdown: function(newValue, oldValue) {
+        openDropdown(newValue, oldValue) {
             if (newValue) {
                 window.addEventListener('click', this.handleOutsideClicks)
                 this.dropdown.addEventListener('click', this.handleInsideClicks)
@@ -87,6 +87,9 @@ export const Dropdown = {
                 this.dropdown.removeEventListener('click',
                     this.handleInsideClicks)
             }
+        },
+        $route() {
+            this.openDropdown = false
         }
     }
 }
