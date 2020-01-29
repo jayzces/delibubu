@@ -1,5 +1,5 @@
 <template>
-    <nav class="app-nav" :class="{ 'nav-blend': blend && !loggedIn }">
+    <nav class="app-nav" :class="{ 'nav-blend': blend && !insertedAlert }">
         <div class="nav__content max-content">
             <div class="left">
                 <button class="user-dropdowns-toggle"
@@ -57,7 +57,8 @@
                 blend: false,
                 openLoginPopup: false,
                 openSignupPopup: false,
-                showUserDropdowns: false
+                showUserDropdowns: false,
+                insertedAlert: false
             }
         },
         methods: {
@@ -86,6 +87,10 @@
 
             Eventbus.$on('openLoginPopup', () => {
                 this.openLoginPopup = true
+            })
+
+            Eventbus.$on('insertedAlert', value => {
+                this.insertedAlert = value
             })
         }
     }

@@ -5,6 +5,8 @@
 </template>
 
 <script>
+    import Eventbus from '@/eventbus'
+
     export default {
         name: 'AppAlert',
         props: {
@@ -17,6 +19,12 @@
                 type: String,
                 required: true
             }
+        },
+        mounted() {
+            Eventbus.$emit('insertedAlert', true)
+        },
+        destroyed() {
+            Eventbus.$emit('insertedAlert', false)
         }
     }
 </script>
