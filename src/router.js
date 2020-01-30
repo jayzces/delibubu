@@ -23,6 +23,10 @@ export default new Router({
             name: 'notifications',
             component: require('@/pages/NotificationsPage').default
         }, {
+            path: '/orders',
+            name: 'orders',
+            component: require('@/pages/OrdersPage').default
+        }, {
             path: '*',
             redirect: {
                 name: 'home'
