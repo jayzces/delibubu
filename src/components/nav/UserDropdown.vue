@@ -6,7 +6,7 @@
 
         <div class="dropdown" :class="{ hidden: !openDropdown }">
             <a href="">My Profile</a>
-            <a href="">My Orders</a>
+            <router-link :to="{ name: 'orders' }">My Orders</router-link>
             <a href="/logout" @click.prevent="userLogout">Log Out</a>
         </div>
     </div>
