@@ -47,6 +47,7 @@
 
 ::-webkit-scrollbar {
     width: var(--scrollbar-offset);
+    height: var(--scrollbar-offset);
 }
 
 ::-webkit-scrollbar-thumb {
