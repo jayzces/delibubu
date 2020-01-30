@@ -13,7 +13,8 @@
                     @onSelection="selectLocation" />
             </div>
 
-            <button class="save-btn" @click="updateLocation">Save Location</button>
+            <button class="save-btn"
+                @click="updateLocation">Save Location</button>
         </div>
     </div>
 </template>

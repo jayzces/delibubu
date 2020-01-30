@@ -7,7 +7,9 @@
                 :key="day.name">{{ day.name }}
                 <span class="schedule">
                     <template v-if="!day.open">Closed</template>
-                    <template v-else>{{ day.time.open | time }} - {{ day.time.close | time }}</template>
+                    <template v-else>
+                        {{ day.time.open | time }} - {{ day.time.close | time }}
+                    </template>
                 </span>
             </div>
         </div>

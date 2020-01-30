@@ -5,9 +5,8 @@
             @click="openOptions = !openOptions">{{ selected }}</div>
 
         <ul class="options" v-if="openOptions">
-            <li class="placeholder" v-if="options.length == 0">
-                {{ placeholder }}
-            </li>
+            <li class="placeholder"
+                v-if="options.length == 0">{{ placeholder }}</li>
             <li v-for="(op, index) in options"
                 :key="`option-${index}`"
                 @click="select(op)">{{ formatter(op) }}</li>

@@ -3,7 +3,8 @@
         <div class="content">
             <AppLogo />
             <p>Delivering convenience to you wherever you may be. <br /> Food, Grocery and Errand Services available for your comfort.</p>
-            <button class="main button--large" @click="openSignupPopup">Sign Up Now</button>
+            <button class="main button--large"
+                @click="openSignupPopup">Sign Up Now</button>
         </div>
 
         <a href="#services-slides" class="arrow">arrow</a>

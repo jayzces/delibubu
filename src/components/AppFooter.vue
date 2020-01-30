@@ -19,7 +19,8 @@
                     <li v-for="(link, lIndex) in group.links"
                         :key="`group-${gIndex}-link-${lIndex}`">
                         <router-link :to="{ name: link.route }">
-                            {{ link.name }}</router-link>
+                            {{ link.name }}
+                        </router-link>
                     </li>
                 </ul>
             </div>

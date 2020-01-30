@@ -17,7 +17,8 @@
             <p class="error" v-if="showError">Unable to log in. Please check your login details, and try again.</p>
             <button class="main button--medium" @click="event">Log In</button>
             <p>Don't have an account yet?
-                <a href="" @click.prevent="openSignupPopup">Sign Up.</a></p>
+                <a href="" @click.prevent="openSignupPopup">Sign Up.</a>
+            </p>
         </template>
     </AppPopup>
 </template>

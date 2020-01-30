@@ -16,9 +16,9 @@
                     :key="cat.name">
                     <header>
                         <h3>{{ cat.name }}
-                            <span v-if="cat.required"
-                                class="tag tag--accent1">Required</span>
-                            <span v-else class="tag">Optional</span>
+                            <span class="tag tag--accent1"
+                                v-if="cat.required">Required</span>
+                            <span class="tag" v-else>Optional</span>
                         </h3>
 
                         <small>Pick
@@ -47,14 +47,17 @@
 
                             <template v-if="opt.additional_price > 0">
                                 <label :for="`cat-${cIndex}-opt-${oIndex}`"
-                                    @click="updateSubtotal(cat, opt)">{{ opt.name }}
-                                    <span class="additional-price"> +
-                                        {{ opt.additional_price | currency }}</span>
+                                    @click="updateSubtotal(cat, opt)">
+                                    {{ opt.name }}
+                                    <span class="additional-price">
+                                        + {{ opt.additional_price | currency }}
+                                    </span>
                                 </label>
                             </template>
                             <template v-else>
                                 <label :for="`cat-${cIndex}-opt-${oIndex}`">
-                                    {{ opt.name }}</label>
+                                    {{ opt.name }}
+                                </label>
                             </template>
                         </div>
                     </div>
@@ -90,14 +93,16 @@
                     <div class="subtotal">
                         <h3>Subtotal</h3>
                         <div class="value">
-                            {{ quantity * subtotal | currency }}</div>
+                            {{ quantity * subtotal | currency }}
+                        </div>
                     </div>
                 </section>
             </form>
         </template>
 
         <template slot="footer">
-            <button class="main button--large add-cart-button" @click="$emit('close')">
+            <button class="main button--large add-cart-button"
+                @click="$emit('close')">
                 <CartIcon /> Add to Cart
             </button>
         </template>
