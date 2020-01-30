@@ -51,7 +51,8 @@
                                 <p class="ellipsis">{{ item.desc }}</p>
 
                                 <div class="item__price">
-                                    {{ item.price | currency }}</div>
+                                    {{ item.price | currency }}
+                                </div>
                             </div>
                         </div>
                     </div>

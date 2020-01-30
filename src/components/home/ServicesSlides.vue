@@ -11,7 +11,8 @@
                     <p v-html="svc.subtitle">{{ svc.subtitle }}</p>
                     <button class="main button--large"
                         @click="$router.push({ name: svc.route })">
-                        {{ svc.button }}</button>
+                        {{ svc.button }}
+                    </button>
                 </div>
             </div>
         </div>
@@ -21,7 +22,7 @@
                     :key="`service-nav-${index}`"
                     :class="{ selected: svc.visible }"
                     @click="select(svc)">{{ svc.title }}</li>
-                <div class="bar main"></div>
+                <div class="bar main">bar</div>
             </ul>
         </nav>
     </div>
@@ -274,6 +275,7 @@
         width: 500px;
         max-width: 0;
         height: 6px;
+        font-size: 0;
         transition: all 500ms ease-in-out;
         border-radius: 6px;
     }

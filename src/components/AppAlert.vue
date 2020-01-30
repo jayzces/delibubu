@@ -1,7 +1,7 @@
 <template>
     <div class="app-alert"
         :class="`app-alert--${type}`"
-        v-html="message"></div>
+        v-html="message">Alert</div>
 </template>
 
 <script>

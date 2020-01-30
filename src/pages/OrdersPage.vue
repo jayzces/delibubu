@@ -5,12 +5,10 @@
 
             <nav class="tabs">
                 <ul>
-                    <li>All</li>
-                    <li>Food Pickup and Delivery</li>
-                    <li>Grocery Services</li>
-                    <li>Errand Services</li>
-                    <li>Cash Delivery / Deposit</li>
-                    <li>Bills Payment</li>
+                    <li v-for="(tab, index) in tabs"
+                        :key="tab"
+                        :class="{ active: activeTab == index }"
+                        @click="activeTab = index">{{ tab }}</li>
                 </ul>
             </nav>
 
@@ -30,19 +28,36 @@
                             <tr v-for="order in orders"
                                 :key="order.order_no">
                                 <td>
-                                    <div class="order__no">{{ order.order_no }}</div>
+                                    <div class="order__no">
+                                        Order No. {{ order.order_no }}
+                                    </div>
                                     <div class="order__details">
-                                        {{ order.no_of_items }} item(s) for {{ order.recipient }},
+                                        {{ order.no_of_items }} item(s) for
+                                        {{ order.recipient }},
                                         {{ order.contact_no }}
                                     </div>
                                 </td>
-                                <td class="total">{{ order.total }}</td>
-                                <td>{{ order.status }}</td>
+                                <td class="total">{{ order.total | currency }}</td>
+                                <td :class="{
+                                    orange: order.status == 'Pending',
+                                    'red bold': order.status == 'Order Denied'
+                                        || order.status == 'Cancelled',
+                                    'green bold': order.status == 'Completed'
+                                }">{{ order.status }}</td>
                                 <td>{{ order.status_remarks }}</td>
                                 <td>
-                                    <button>Cancel Order</button>
-                                    <button>Retry Order</button>
-                                    <button>Order Again</button>
+                                    <button class="red-button"
+                                        v-if="order.status == 'Pending'">
+                                        Cancel Order
+                                    </button>
+                                    <button class="orange-button"
+                                        v-else-if="order.status == 'Order Denied' || order.status == 'Cancelled'">
+                                        Retry Order
+                                    </button>
+                                    <button class="green-button"
+                                        v-else-if="order.status == 'Completed'">
+                                        Order Again
+                                    </button>
                                 </td>
                             </tr>
                         </tbody>
@@ -58,6 +73,15 @@
         name: 'OrdersPage',
         data() {
             return {
+                tabs: [
+                    'All',
+                    'Food Pickup and Delivery',
+                    'Grocery Service',
+                    'Errand Service',
+                    'Cash Delivery / Deposit',
+                    'Bills Payment'
+                ],
+                activeTab: 0,
                 orders: [
                     {
                         order_no: 'b5af9403-df90-5ecc-bb78-6eff525df87e',
@@ -133,5 +157,133 @@
 <style scoped>
     .orders-page {
         padding: 40px 15px 50px;
+    }
+
+
+    .tabs {
+        margin-top: 10px;
+    }
+
+    .tabs ul {
+        display: flex;
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        font-size: 20px;
+    }
+
+    .tabs li {
+        padding: 0 20px;
+        cursor: pointer;
+    }
+
+    .tabs li:first-child {
+        padding-left: 0;
+    }
+
+    .tabs li:last-child {
+        padding-right: 0;
+    }
+
+    .tabs li:not(:first-child) {
+        position: relative;
+    }
+
+    .tabs li:not(:first-child)::before {
+        content: "";
+        background-color: var(--black-a20);
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        margin: auto 0;
+        width: 1px;
+        height: 100%;
+    }
+
+    .tabs .active {
+        font-weight: 600;
+        color: var(--accent1);
+    }
+
+
+    .tab-contents {
+        margin-top: 30px;
+    }
+
+
+    table {
+        width: 100%;
+        border-spacing: 0;
+    }
+
+    thead tr {
+        background-color: var(--accent1-l90);
+    }
+
+    th {
+        padding: 10px 20px;
+        font-weight: 600;
+    }
+
+    th:first-child {
+        text-align: left;
+    }
+
+    tbody::before {
+        content: "";
+        display: table-row;
+        height: 10px;
+    }
+
+    td {
+        padding: 10px 20px;
+    }
+
+    td:not(:first-child) {
+        text-align: center;
+    }
+
+
+    .order__no {
+        font-weight: 600;
+    }
+
+    .order__details {
+        color: var(--black-a70);
+    }
+
+    .total {
+        font-weight: 600;
+        font-size: 20px;
+    }
+
+    .orange {
+        color: var(--accent3);
+    }
+
+    .red {
+        color: var(--accent2);
+    }
+
+    .green {
+        color: var(--success);
+    }
+
+    .bold {
+        font-weight: 600;
+    }
+
+    .red-button {
+        background-color: var(--accent2);
+    }
+
+    .orange-button {
+        background-color: var(--accent3);
+    }
+
+    .green-button {
+        background-color: var(--success);
     }
 </style>

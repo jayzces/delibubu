@@ -6,8 +6,7 @@
             <li v-for="(group, index) in menu"
                 :key="group.name"
                 @click="scrollTo(index)"
-                :class="{ active: index == activeMenu }"
-            >{{ group.name }}</li>
+                :class="{ active: index == activeMenu }">{{ group.name }}</li>
             <li>Specialteas</li>
             <li>Fruitea</li>
             <li>Yakult</li>

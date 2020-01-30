@@ -36,7 +36,8 @@
         <template slot="footer">
             <button class="main button--medium" @click="event">Sign Up</button>
             <p>Already have an account
-                <a href="" @click.prevent="openLoginPopup">Log in.</a></p>
+                <a href="" @click.prevent="openLoginPopup">Log in.</a>
+            </p>
         </template>
     </AppPopup>
 </template>
