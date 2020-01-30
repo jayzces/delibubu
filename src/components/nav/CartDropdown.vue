@@ -103,6 +103,7 @@
     .main {
         margin-top: 10px;
         width: 100%;
+        text-transform: uppercase;
         font-weight: 600;
     }
 </style>

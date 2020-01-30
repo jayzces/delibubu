@@ -51,11 +51,10 @@
                     resolve()
                 })
 
-                promise.then(this.handleMenuScroll)
-            },
-            handleMenuScroll() {
-                let item = document.querySelector('li.active')
-                this.$el.scrollLeft = item.offsetLeft
+                promise.then(() => {
+                    let item = document.querySelector('li.active')
+                    this.$el.scrollLeft = item.offsetLeft
+                })
             }
         }
     }
