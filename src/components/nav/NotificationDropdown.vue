@@ -123,12 +123,12 @@
         cursor: pointer;
     }
 
-    .notif--unread {
-        background-color: var(--accent1-l95);
+    .notif:hover {
+        background-color: var(--accent1-l90);
     }
 
-    .notif--unread:hover {
-        background-color: var(--accent1-l90);
+    .notif--unread {
+        background-color: var(--accent1-l95);
     }
 
     .notif__avatar {
