@@ -8,24 +8,24 @@
                     <li v-for="(tab, index) in tabs"
                         :key="tab"
                         :class="{ active: activeTab == index }"
-                        @click="activeTab = index">{{ tab }}</li>
+                        @click="handleScroll(index)">{{ tab }}</li>
                 </ul>
             </nav>
 
-            <section class="tab-contents">
-                <section class="tab-contents__item">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Purchase Order</th>
-                                <th>Total Payment</th>
-                                <th>Status</th>
-                                <th>Remarks</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="order in orders"
+            <section class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Purchase Order</th>
+                            <th>Total Payment</th>
+                            <th>Status</th>
+                            <th>Remarks</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template v-if="activeTab == 0 || activeTab == 1">
+                            <tr v-for="order in fpdOrders"
                                 :key="order.order_no">
                                 <td>
                                     <div class="order__no">
@@ -60,9 +60,9 @@
                                     </button>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
-                </section>
+                        </template>
+                    </tbody>
+                </table>
             </section>
         </div>
     </main>
@@ -82,7 +82,7 @@
                     'Bills Payment'
                 ],
                 activeTab: 0,
-                orders: [
+                fpdOrders: [
                     {
                         order_no: 'b5af9403-df90-5ecc-bb78-6eff525df87e',
                         no_of_items: 1,
@@ -148,7 +148,33 @@
                         status: 'Cancelled',
                         status_remarks: ''
                     }
+                ],
+                gsOrders: [
+                    {
+                        order_no: '',
+                        no_of_items: 2,
+                        recipient: '',
+                        contact_no: '+639123456789',
+                        total: 0,
+                        status: '',
+                        status_remarks: ''
+                    }
                 ]
+            }
+        },
+        methods: {
+            handleScroll(index) {
+                let promise = new Promise((resolve, reject) => {
+                    this.activeTab = index
+                    resolve()
+                })
+
+                promise.then(() => {
+                    let container = document.querySelector('.tabs'),
+                        item = container.querySelector('.active')
+                    container.scrollLeft = item.offsetLeft
+                })
+
             }
         }
     }
@@ -159,30 +185,36 @@
         padding: 40px 15px 50px;
     }
 
+    @media all and (max-width: 650px) {
+        .orders-page {
+            padding-left: 0;
+            padding-right: 0;
+        }
 
-    .tabs {
-        margin-top: 10px;
+        h1 {
+            padding: 0 15px;
+        }
     }
+
+    @media all and (max-width: 480px) {
+        .orders-page {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+    }
+
 
     .tabs ul {
         display: flex;
         margin: 0;
         padding: 0;
         list-style-type: none;
-        font-size: 20px;
     }
 
     .tabs li {
+        margin-top: 10px;
         padding: 0 20px;
         cursor: pointer;
-    }
-
-    .tabs li:first-child {
-        padding-left: 0;
-    }
-
-    .tabs li:last-child {
-        padding-right: 0;
     }
 
     .tabs li:not(:first-child) {
@@ -207,13 +239,63 @@
         color: var(--accent1);
     }
 
+    @media all and (min-width: 651px) {
+        .tabs ul {
+            flex-wrap: wrap;
+            font-size: 20px;
+        }
 
-    .tab-contents {
-        margin-top: 30px;
+        .tabs li:first-child {
+            padding-left: 0;
+        }
+    }
+
+    @media all and (max-width: 650px) {
+        .tabs {
+            background-color: var(--white);
+            position: sticky;
+            top: var(--nav-height);
+            margin-top: 10px;
+            overflow-x: auto;
+            border: 1px solid var(--black-a20);
+            border-left: 0;
+            border-right: 0;
+        }
+
+        .tabs::-webkit-scrollbar {
+            height: 0;
+        }
+
+        .tabs ul {
+            width: max-content;
+        }
+
+        .tabs li {
+            margin-top: 0;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+
+        .tabs.tabs li::before {
+            content: none;
+        }
     }
 
 
+    .table-wrapper {
+        margin-top: 30px;
+        overflow-x: auto;
+    }
+
+     @media all and (max-width: 650px) {
+         .table-wrapper {
+             margin-top: 15px;
+         }
+     }
+
+
     table {
+        min-width: 1050px;
         width: 100%;
         border-spacing: 0;
     }
@@ -256,7 +338,12 @@
 
     .total {
         font-weight: 600;
-        font-size: 20px;
+    }
+
+    @media all and (min-width: 651px) {
+        .total {
+            font-size: 20px;
+        }
     }
 
     .orange {
