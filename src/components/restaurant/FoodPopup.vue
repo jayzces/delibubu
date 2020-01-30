@@ -22,8 +22,8 @@
                         </h3>
 
                         <small>Pick
-                            <template v-if="cat.maxPick > 1">at most</template>
-                            {{ cat.maxPick }}
+                            <template v-if="cat.max_pick > 1">at most</template>
+                            {{ cat.max_pick }}
                         </small>
                     </header>
 
@@ -32,7 +32,7 @@
                             v-for="(opt, oIndex) in cat.options"
                             :key="opt.name">
                             <input type="radio"
-                                v-if="cat.maxPick == 1"
+                                v-if="cat.max_pick == 1"
                                 :name="`cat-${cIndex}-opt`"
                                 :id="`cat-${cIndex}-opt-${oIndex}`"
                                 v-model="cat.selected"
@@ -45,11 +45,11 @@
                                 :value="opt.name"
                                 :disabled="isDisabled(cat, opt.name)" />
 
-                            <template v-if="opt.additionalPrice > 0">
+                            <template v-if="opt.additional_price > 0">
                                 <label :for="`cat-${cIndex}-opt-${oIndex}`"
                                     @click="updateSubtotal(cat, opt)">{{ opt.name }}
                                     <span class="additional-price"> +
-                                        {{ opt.additionalPrice | currency }}</span>
+                                        {{ opt.additional_price | currency }}</span>
                                 </label>
                             </template>
                             <template v-else>
@@ -117,87 +117,87 @@
                     {
                         name: 'Sugar Level',
                         required: true,
-                        maxPick: 1,
+                        max_pick: 1,
                         options: [
                             {
                                 name: '100%',
-                                additionalPrice: 0.00
+                                additional_price: 0.00
                             }, {
                                 name: '75%',
-                                additionalPrice: 0.00
+                                additional_price: 0.00
                             }, {
                                 name: '50%',
-                                additionalPrice: 0.00
+                                additional_price: 0.00
                             }, {
                                 name: '25%',
-                                additionalPrice: 0.00
+                                additional_price: 0.00
                             }, {
                                 name: 'No Sugar',
-                                additionalPrice: 0.00
+                                additional_price: 0.00
                             }
                         ],
                         selected: null
                     }, {
                         name: 'Free Add On',
                         required: true,
-                        maxPick: 2,
+                        max_pick: 2,
                         options: [
                             {
                                 name: 'Egg Pudding',
-                                additionalPrice: 0.00
+                                additional_price: 0.00
                             }, {
                                 name: 'Mango Pudding',
-                                additionalPrice: 0.00
+                                additional_price: 0.00
                             }, {
                                 name: 'Milk Pudding',
-                                additionalPrice: 0.00
+                                additional_price: 0.00
                             }, {
                                 name: 'Rainbow Jelly',
-                                additionalPrice: 0.00
+                                additional_price: 0.00
                             }, {
                                 name: 'Grass Jelly',
-                                additionalPrice: 0.00
+                                additional_price: 0.00
                             }, {
                                 name: 'Oreo',
-                                additionalPrice: 0.00
+                                additional_price: 0.00
                             }, {
                                 name: 'Green Apple Popballs',
-                                additionalPrice: 0.00
+                                additional_price: 0.00
                             }, {
                                 name: 'Pearls',
-                                additionalPrice: 0.00
+                                additional_price: 0.00
                             }
                         ],
                         selected: []
                     }, {
                         name: 'Extra Add On',
                         required: false,
-                        maxPick: 5,
+                        max_pick: 5,
                         options: [
                             {
                                 name: 'Egg Pudding',
-                                additionalPrice: 20.00
+                                additional_price: 20.00
                             }, {
                                 name: 'Mango Pudding',
-                                additionalPrice: 20.00
+                                additional_price: 20.00
                             }, {
                                 name: 'Milk Pudding',
-                                additionalPrice: 20.00
+                                additional_price: 20.00
                             }, {
                                 name: 'Rainbow Jelly',
-                                additionalPrice: 20.00
+                                additional_price: 20.00
                             }, {
                                 name: 'Grass Jelly',
-                                additionalPrice: 20.00
+                                additional_price: 20.00
                             }, {
                                 name: 'Oreo',
-                                additionalPrice: 20.00
+                                additional_price: 20.00
                             }, {
                                 name: 'Green Apple Popballs',
-                                additionalPrice: 20.00
+                                additional_price: 20.00
                             }, {
                                 name: 'Pearls',
-                                additionalPrice: 20.00
+                                additional_price: 20.00
                             }
                         ],
                         selected: []
@@ -209,13 +209,13 @@
         },
         methods: {
             isDisabled(category, optionName) {
-                return category.selected.length >= category.maxPick && category.selected.indexOf(optionName) === -1
+                return category.selected.length >= category.max_pick && category.selected.indexOf(optionName) === -1
             },
             updateSubtotal(category, optionName) {
                 if (!category.selected.includes(optionName.name)) {
-                    this.subtotal += optionName.additionalPrice
+                    this.subtotal += optionName.additional_price
                 } else {
-                    this.subtotal -= optionName.additionalPrice
+                    this.subtotal -= optionName.additional_price
                 }
             },
             minusQuantity() {
