@@ -3,3 +3,13 @@
 Delibubu
 =========
 Templates for an e-commerce site.
+
+### Local Server
+```bash
+npm run serve
+```
+
+### Build for Production
+```bash
+npm run build
+```
