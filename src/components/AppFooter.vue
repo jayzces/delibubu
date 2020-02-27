@@ -25,7 +25,7 @@
             </div>
 
             <footer>
-                <div>© Delibaba 2019. All rights reserved.</div>
+                <div>© Delibubu 2019-2020. All rights reserved.</div>
                 <ul class="more-links">
                     <li v-for="(link, index) in moreLinks"
                         :key="`more-links-${index}`">

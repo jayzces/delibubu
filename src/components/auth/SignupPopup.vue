@@ -69,7 +69,7 @@
 
                     Eventbus.$emit('addAlert', {
                         type: 'info',
-                        message: 'We sent an activation link to your email, <strong>valerieboyle@gmail.com</strong>. Please activate your account to fully avail of Delibaba’s services.'
+                        message: 'We sent an activation link to your email, <strong>valerieboyle@gmail.com</strong>. Please activate your account to fully avail of Delibubu’s services.'
                     })
                 }
             },
