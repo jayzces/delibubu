@@ -1,6 +1,6 @@
 <template>
     <AppPopup @close="$emit('close')">
-        <template slot="title">Login to Delibaba</template>
+        <template slot="title">Login to Delibubu</template>
 
         <form>
             <div class="field" :class="{ 'field--error': showError }">
